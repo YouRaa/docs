@@ -6,15 +6,13 @@ export default Page({title: "Archive Node"});
 Ноды Mina сжатые по умолчанию, что означает, что им не нужно хранить историческую информацию о сети, блоке или транзакциях.
 В некоторых случаях полезно сохранять эти исторические данные, что можно сделать, запустив **Архивную ноду.**
 
-**Архивная нода** - это обычный daemon mina, подключенный к запущенному процессу архивирования.
-Daemon будет регулярно отправлять данные блокчейна в процесс архивации,
+**Архивная нода** - это обычный daemon Mina, подключенный к запущенному процессу архивирования. Daemon будет регулярно отправлять данные блокчейна в архив,
 который сохранит его в базе данных [Postgres](https://www.postgresql.org/). 
 
-Running an archive node therefore requires some knowledge of managing a Postgres database instance.
-In this section, we'll set up a database, run the Archive Node, connect it to a daemon, and try some queries on the data. 
-Let's get started by installing what we need.  
+Поэтому для запуска архивной ноды требуются некоторые знания об управлении элементами базы данных Postgres.
+В этом разделе мы настроим базу данных, запустим архивную ноду, подключим ее к daemon и попробуем выполнить несколько запросов. Начнем с установки необходимых компонентов.
 
-## Installation
+## Установка
 
 1. Install the latest version of mina. If you haven't upgraded to the latest version of the daemon, head [back to the docs](/docs/getting-started) to get the latest version. You can run ```mina -help``` to check if the installation succeeded.
 2. Install [Postgres](https://www.postgresql.org/download/).
