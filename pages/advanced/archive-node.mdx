@@ -34,17 +34,17 @@ export default Page({title: "Archive Node"});
 
 <Alert>
 
-Note: Some of these instructions may depend on how your operating system installs postgres (and assume that it is installed in the first place).
+Примечание: Некоторые из этих инструкций могут зависеть от того, как ваша операционная система устанавливает postgres (и предполагать, что она установлена изначально).
 
 </Alert>
 
-1. Start a local postgres server. This will just run it in the foreground for testing, you will likely want to run it in the background or use your OS's service manager (like systemd) to run it for you. Alternatively, you may use a postgres service hosted by a cloud provider.
+1. Запустите локальный сервер postgres. Это просто запустит процесс тестирования, и вы, вероятно, захотите запустить его в фоновом режиме или использовать диспетчер служб вашей ОС (например systemd), чтобы запустить его автоматически. В качестве альтернативы вы можете использовать облачный сервис postgres.
 
 ```
 postgres -p 5432 -D /usr/local/var/postgres
 ```
 
-For macOS, run ```brew services start postgres``` to start a local postgres server.
+Для macOS, используйте команду ```brew services start postgres``` чтобы запустить локальный сервер postgres.
 
 2. Create database (here called `archive`) on server and load the schema into it. This will only need to be done the first time the archive node is set up.
 ```
