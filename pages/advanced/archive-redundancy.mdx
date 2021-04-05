@@ -1,13 +1,13 @@
 import Page from '@reason/pages/Docs';
 export default Page({title: "Archive Redundancy"});
 
-# Archive Redundancy
+# Архивное Резервирование
 
-Presented here are three flows for accessing historical information about blocks and transactions.
+Ниже представлены три пути для доступа к информации о блоках и истории транзакциий.
 
-The paths presented here are sorted from "rawest" to "most processed".
+Представленные здесь пути отсортированы от «самых необработанных» до «наиболее обработанных».
 
-O(1) labs will be deploying all three flows in their infrastructure (with lots of redundancy) so they will be able to provide missing information for consumers of (A), (B), or (C) if their nodes go offline for any reason and miss information.
+O(1) labs будут разворачивать все три потока в своей инфраструктуре (с большой избыточностью), чтобы они могли предоставить недостающую информацию для потребителей (A), (B) или (C), если их ноды отключатся по любой причине и упустят информацию.
 
 ## A. Raw Block Logging
 
