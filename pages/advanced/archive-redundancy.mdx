@@ -3,17 +3,17 @@ export default Page({title: "Archive Redundancy"});
 
 # Архивное Резервирование
 
-Ниже представлены три пути для доступа к информации о блоках и истории транзакциий.
+Ниже представлены три потока для доступа к информации о блоках и истории транзакциий.
 
 Представленные здесь пути отсортированы от «самых необработанных» до «наиболее обработанных».
 
-O(1) labs будут разворачивать все три потока в своей инфраструктуре (с большой избыточностью), чтобы они могли предоставить недостающую информацию для потребителей (A), (B) или (C), если их ноды отключатся по любой причине и упустят информацию.
+O(1) labs будут разворачивать все три потока в своей инфраструктуре (с большой избыточностью), чтобы они могли предоставить недостающую информацию для потребителей (A), (B) или (C) если их ноды отключатся по любой причине и упустят информацию.
 
-## A. Raw Block Logging
+## A. Логирование необработанных блоков
 
-We have a mechanism in place for logging a high-fidelity machine-readable representation of blocks using JSON including some opaque information deep within. We use these logs internally to quickly replay blocks to get to certain chain-states for debugging. This information suffices to recreate exact states of the network.
+У нас есть механизм для логирования высокоточного машиночитаемого образа блоков, включая некоторую дополнительную внутреннюю информацию, с помощью JSON. Мы используем эти логи для того, чтобы быстро найти нужные блоки и перейти к определенным состояниям цепи для устранения ошибок. Этой информации достаточно, чтобы воссоздавать точные состояния сети.
 
-Some of the internal data look like this:
+Некоторые внутренние данные выглядят так:
 
 ```json
 {"data":["Signed_command",{"payload":{"common":{"fee":"100","fee_token":"1","fee_payer_pk":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","nonce":"340","valid_until":"4294967295","memo":"E4YM2vTHhWEg66xpj52JErHUBU4pZ1yageL4TVDDpTTSsv8mK6YaH"},"body":["Payment",{"source_pk":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","receiver_pk":"B62qm2GCuGCEK79mEjeyaeiFoukThuZLJCHGe9HAzuAnfbtS5FHtPnP","token_id":"1","amount":"100000000"}]},"signer":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","signature":"7mXGz8Df1gu92HVWGue24wcrGxDWkgQrDK59xQGXc627PKFQvVAPSzZn7JMkHtfdBUXavDHcgLBZy4iR4UmA5seRCPMkFDci"}],"status":["Applied",{"fee_payer_account_creation_fee_paid":null,"receiver_account_creation_fee_paid":null,"created_token":null},{"fee_payer_balance":"31866000100000","source_balance":"31866000100000","receiver_balance":"34099000000"}]}],"coinbase":["One",null],"internal_command_balances":[["Coinbase",{"coinbase_receiver_balance":"75477804514901","fee_transfer_receiver_balance":null}],["Fee_transfer",{"receiver1_balance":"65266376010003","receiver2_balance":"78601129170700"}],["Fee_transfer",{"receiver1_balance":"66001820000000","receiver2_balance":"76870784414900"}],["Fee_transfer",{"receiver1_balance":"71158365898775","receiver2_balance":"59264207944722"}],["Fee_transfer",{"receiver1_balance":"68546088449962","receiver2_balance":"66721919100000"}],["Fee_transfer",{"receiver1_balance":"67700798001000","receiver2_balance":"66372760000000"}],["Fee_transfer",{"receiver1_balance":"85383891400000","receiver2_balance":"107174952265469"}],["Fee_transfer",{"receiver1_balance":"65879310000000","receiver2_balance":"66282230000000"}]]}]},"delta_transition_chain_proof":["jxLZWooV57gKCmanzCHHt1CDbHfUpMu6MkynUdqN9ZkBUJi7B1W",[]]}
