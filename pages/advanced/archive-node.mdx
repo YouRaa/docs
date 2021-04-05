@@ -14,7 +14,7 @@ export default Page({title: "Archive Node"});
 
 ## Установка
 
-1. Установите последнюю версию mina. Если вы не обновились до последней версии daemon, перейдите [назад к документации](/docs/getting-started), чтобы получить последнюю версию. Вы можете запкстить код ```mina -help```, чтобы проверить успешность установки.
+1. Установите последнюю версию mina. Если вы не обновились до последней версии daemon, перейдите [назад к документации](/docs/getting-started), чтобы получить последнюю версию. Вы можете запустить код ```mina -help```, чтобы проверить успешность установки.
 2. Установите [Postgres](https://www.postgresql.org/download/).
 3. Установите пакет архивной ноды. 
 
@@ -44,30 +44,30 @@ export default Page({title: "Archive Node"});
 postgres -p 5432 -D /usr/local/var/postgres
 ```
 
-Для macOS, используйте команду ```brew services start postgres``` чтобы запустить локальный сервер postgres.
+Для macOS, используйте команду ```brew services start postgres```, чтобы запустить локальный сервер postgres.
 
-2. Create database (here called `archive`) on server and load the schema into it. This will only need to be done the first time the archive node is set up.
+2. Создайте базу данных (здесь она называется «архив») на сервере и загрузите в нее схему. Это необходимо будет сделать только при первой настройке архивной ноды.
 ```
 createdb -h localhost -p 5432 -e archive
 
 psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/create_schema.sql)
 ```
 
-3. Start archive process on port 3086, connecting to the postgres database we started on port 5432 in step 1.
+3. Запустите процесс архивации на порте 3086, подключившись к базе данных postgres, которую мы запустили на порте 5432 в шаге 1.
 ```
 coda-archive \
   -postgres-uri postgres://localhost:5432/archive \
   -server-port 3086
 ```
 
-4. Start the daemon, connecting it to the archive process that we just started on port 3086. If you want to connect to an archive process on another machine, you can specify a hostname as well, like `localhost:3086`.
+4. Запустите daemon, подключив его к процессу архивации, который мы только что начали, через порт 3086. Если вы хотите подключиться к процессу архивирования на другом устройстве, вы также можете указать имя хоста, например `localhost:3086`.
 ```
 mina daemon \
     .....
   -archive-address 3086\
 ```
 
-## Using the Archive Node
+## Использование Архивной Ноды
 
 Now that we've got the archive node running, let's take a look at the tables in the database. 
 
