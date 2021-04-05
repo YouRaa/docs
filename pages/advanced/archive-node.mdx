@@ -69,16 +69,16 @@ mina daemon \
 
 ## Использование Архивной Ноды
 
-Now that we've got the archive node running, let's take a look at the tables in the database. 
+Теперь, когда у нас запущена архивная нода, давайте взглянем на таблицы в базе данных.
 
-To list the tables in the database, you can run the ``\dt`` command, in psql.
-View the full schema of the tables [here](https://github.com/minaProtocol/mina/blob/master/src/app/archive/create_schema.sql).
+Чтобы вывести список таблиц в базе данных, вы можете запустить команду ``\dt`` в psql.
+Полную схему таблиц можно посмотреть [здесь](https://github.com/minaProtocol/mina/blob/master/src/app/archive/create_schema.sql).
 
-Below are some notable fields in each table. 
+Ниже приведены некоторые важные поля для каждой таблицы. 
 
-### Table 1: user_commands
+### Таблица 1: user_commands
 #
-This table keeps track of transactions made on the network. 
+Эта таблица отслеживает транзакции, совершаемые в сети.
 ```
 ...
   user_command_type          Type of transaction being made
@@ -90,9 +90,9 @@ This table keeps track of transactions made on the network.
   token                      ID of a token **If you are querying for different type of token transactions, specify this field.**
 ```
 
-### Table 2: internal_commands
+### Таблица 2: internal_commands
 
-This table keeps track of rewards earned from snark work or block producing. 
+Эта таблице отслеживает награды, полученные за работу snark или за создание блоков.
 ```
 ...
   internal_command_type      represents whether the command is a `fee_transfer` from snark work or a `coinbase` reward from block producing. 
@@ -102,7 +102,7 @@ This table keeps track of rewards earned from snark work or block producing.
   token                      ID of a token **If you are querying for different type of token transactions, specify this field.**
 ```
 
-### Table 3: blocks
+### Таблица 3: blocks
 
 ```
 ...
@@ -112,11 +112,11 @@ This table keeps track of rewards earned from snark work or block producing.
   creator_id                 public key of the block creator 
 ```
 
-## Try a query 
+## Попробуйте произвести запрос 
 
-Now that we've taken a look at the structure of the data, let's try a query. 
+Теперь, когда мы взглянули на структуру данных, давайте попробуем произвести запрос. 
 
-**Example 1:** Find all blocks that have been created by your public key
+**Пример 1:** Найти все блоки, созданые вашим открытым ключом
 
 ```
 SELECT *
@@ -125,7 +125,7 @@ INNER JOIN public_keys AS pk1 ON b.creator_id = pk1.id
 WHERE value = 'MY_PK'
 ```
 
-**Example 2:** Find all payments you’ve received by your public key
+**Пример 2:** Найти все платежи, полученные на ваш открытый ключ 
 
 ```
 SELECT *
@@ -136,7 +136,7 @@ WHERE value = 'MY_PK'
 AND type = 'payment'
 ```
 
-**Example 3:** Find the block at height 12 on the canonical chain
+**Пример 3:** Нати блок на высоте 12 в канонической цепи
 
 ```
 WITH RECURSIVE chain AS (
@@ -155,7 +155,7 @@ WITH RECURSIVE chain AS (
   WHERE c.height = 12
 ```
 
-**Example 3:** List the counts of blocks created by each public key and sort them in descending order
+**Пример 4:** Перечислить количество блоков, созданных каждым открытым ключом, и отсортировать их в убывающем порядке
 
 ```
 SELECT p.value, COUNT(*) FROM blocks
@@ -164,7 +164,7 @@ GROUP BY p.value
 ORDER BY count DESC;
 ```
 
-**Example 4:** List the counts of applied payments created by each public key and sort them in descending order
+**Пример 4:** Перечислить количество платежей, созданных каждым открытым ключом, и отсортировать их в убывающем порядке 
 
 ```
 SELECT p.value, COUNT(*) FROM user_commands
