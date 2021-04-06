@@ -4,7 +4,7 @@ export default Page({ title: "Mina Client SDK Keypair" });
 
 # Клиентский SDK 
 
-Клиентский SDK для NodeJS, который позволяет генерировать пары ключей Mina и подписывать с их помощью транзакции и строки. Проект содержит типизацию Typescript и ReasonML, но может использоваться и в простом NodeJS.
+Клиентский SDK для NodeJS, который позволяет генерировать пары ключей Mina и подписывать с их помощью транзакции и строки. Проект содержит типизацию Typescript и ReasonML, но может использоваться и из простой NodeJS.
 
 
 <br />
@@ -58,32 +58,32 @@ console.log(`Private key: ${keys.privateKey}`)
 
 <br />
 
-## Import your account generated from the SDK
+## Импортируйте Свой Аккаунт из SDK
 
-Please note that there are differences in key pair format between what the Mina client expects and what the client SDK generates. 
-When the client SDK is used to generate a key pair, the key pair output returned are strings that aren't directly importable into our Mina client. 
-For this, we will have to use the `mina advanced wrap-key` tool to format our key pair strings into a format that is directly importable to our client.
+Обратите внимание, что существуют различия в формате пар ключей между тем, что ожидает клиент Mina, и тем, что генерирует клиентский SDK.
+При использовании клиентского SDK для генерации пар ключей, выходные данные представляют собой строки, которые нельзя напрямую импортировать в наш клиент Mina.
+Для этого нам придется использовать инструмент `mina advanced wrap-key` для перевода строк нашей пары ключей в формат, который напрямую импортируется в наш клиент.
 
-Accomplishing this takes only a few short steps.
+Для этого потребуется всего несколько простых шагов. 
 
-1. First, make sure you have a folder on your system where you can store the key files. We recommend using the ~/keys folder.
+1. Во-первых, убедитесь, что в вашей системе есть папка, где вы можете хранить файлы с ключами. Мы рекомендуем использовать папку ~/keys.
 
 ```
 mkdir ~/keys
 ```
 
-2. Next, ensure the permissions are set properly in this folder, this prevents unwanted processes from accessing these files.
+2. Затем убедитесь в правильности установленных в папке разрешений, это предотвратит доступ нежелательных процессов к вашим файлам.
 
 ```
 chmod 700 ~/keys
 ```
 
-3. Copy the private key output into a file in the ~/keys folder.
+3. Скопируйте закрытый ключ в файл в папке ~/keys.
 
 ```
 echo 'YOUR-PRIVATE_KEY' > ~/keys/my-wallet
 ```
-4. Ensure the permissions are set properly for the private key file, this prevents unwanted processes from accessing it.
+4. Убедитесь, что разрешения для файла с закрытым ключом установлены правильно, это предотвратит доступ к нему нежелательных процессов.
 
 ```
 chmod 600 ~/keys/my-wallet
