@@ -2,27 +2,25 @@ import Page from "@reason/pages/Docs";
 export default Page({ title: "Mina Client SDK Keypair" });
 
 
-# SDK-Клиент 
+# Клиентский SDK 
 
-Это клиентский SDK для NodeJS, который позволяет генерировать пары ключей Mina и подписывать транзакции и строки с помощью пар ключей Mina.
-Проект содержит типизацию Typescript и ReasonML, но также может использоваться из простого NodeJS.This is a NodeJS client SDK that allows you to generate Mina key pairs and sign transactions and strings using Mina's key pairs.
-The project contains Typescript and ReasonML typings but can be used from plain NodeJS as well. 
+Клиентский SDK для NodeJS, который позволяет генерировать пары ключей Mina и подписывать с их помощью транзакции и строки. Проект содержит типизацию Typescript и ReasonML, но может использоваться и в простом NodeJS.
 
 
 <br />
 
 <Alert kind="warning">
 
-Please be advised that generating key pairs with this method is unadvised and should only be used by experienced security professionals.
-Please use our [mina-generate-keypair](/docs/keypair/mina-generate-keypair) tool instead for creating key pairs.
+Создание пар ключей с помощью этого метода не рекомендуется и должно использоваться только опытными специалистами в области безопасности.
+Для создания пар ключей используйте наш [генератор-ключей-mina](/docs/keypair/mina-generate-keypair).
 
-Never reuse the same keypair from a testnet on mainnet!
+Никогда не используйте повторно одну и ту же пару ключей из тестовой сети в mainnet!
 </Alert>
 
 
-## Installation
+## Установка
 
-The source code for our client SDK is open source and be seen [here](https://github.com/MinaProtocol/mina/tree/develop/frontend/client_sdk).
+Открытый код для нашего клиентского SDK можно найти [здесь](https://github.com/MinaProtocol/mina/tree/develop/frontend/client_sdk).
 
 To get the client SDK installed, you will need NodeJS on your system. Make sure it is available on your machine and then use either yarn or npm to install the client SDK.
 
