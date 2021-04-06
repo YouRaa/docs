@@ -7,7 +7,7 @@ export default Page({title: "Archive Redundancy"});
 
 Представленные здесь пути отсортированы от «самых необработанных» до «наиболее обработанных».
 
-O(1) labs будут разворачивать все три потока в своей инфраструктуре (с большой избыточностью), чтобы они могли предоставить недостающую информацию для потребителей (A), (B) или (C) если их ноды отключатся по любой причине и упустят информацию.
+O(1) labs будут разворачивать все три потока в своей инфраструктуре (с большой избыточностью), чтобы они могли предоставить недостающую информацию для пользователей потоков (A), (B) или (C) если их ноды отключатся по любой причине и упустят информацию.
 
 ## A. Логирование необработанных блоков
 
@@ -21,19 +21,19 @@ O(1) labs будут разворачивать все три потока в с
 
 JSON будет развиваться по мере изменения формата блока и роста нагрузки на сеть. Однако мы не ожидаем большого оттока пользователей до запуска mainnet.
 
-Эта информация отображается в логах и передается на поток stdout. Мы можем предоставить инструменты фильтрации и получения только этих сообщений для их безопасного и постоянного хранения.
+Эта информация отображается в логах и передается на поток stdout. Мы можем предоставить инструменты фильтрации и получения только этих данных для их безопасного и постоянного хранения.
 
 ## B. GraphQL JSON Снапшоты
 
-GraphQL сервер daemom Mina размещен на порту `0xc0d` или 3085 (по умолчанию, настраивается с помощью файла конфигурации или флага -rest-server-port) на вашем устройстве (вы можете открыть его для 0.0.0.0 с помощью -insecure-reset-server). Открытие этого порта для общего доступа в Интернет небезопасно.
+GraphQL сервер daemom Mina размещен на порте `0xc0d` или 3085 (по умолчанию, настраивается с помощью файла конфигурации или флага -rest-server-port) на вашем устройстве (вы можете открыть его для 0.0.0.0 с помощью -insecure-reset-server). Открытие этого порта для общего доступа в Интернет небезопасно.
 
-We expose a `bestChain` query that will remain able to get *at least* the last few blocks (though not all of them) see the docs here for more: [https://minaprotocol.com/graphql-docs/query.doc.html](https://minaprotocol.com/graphql-docs/query.doc.html) that should have all the information you need in JSON. If you poll this at a rate faster than every 3minutes, you will keep up with every block. You can also get this same information via subscription pushed to you via [https://minaprotocol.com/graphql-docs/subscription.doc.html](https://minaprotocol.com/graphql-docs/subscription.doc.html) .
+Мы предоставляем запрос `bestChain`, который по-прежнему сможет получить *по крайней мере* последние несколько блоков (хотя и не все). Смотрите подробную документацию, которая содержит всю необходимую информацию в формате JSON, здесь: [https://minaprotocol.com/graphql-docs/query. doc.html] (https://minaprotocol.com/graphql-docs/query.doc.html). Если вы производите запросы быстрее, чем каждые 3 минуты, вы будете получать информацию о каждом блоке. Вы также можете получать эту информацию с помощью подписки, отправленной вам через [https://minaprotocol.com/graphql-docs/subscription.doc.html] ](https://minaprotocol.com/graphql-docs/subscription.doc.html). 
 
-Currently both many applications exist on testnets that consume this information. O(1) labs is relying on this data source in a few places and there will likely be other consumers by mainnet.
+В настоящее время в тестовых сетях существует множество приложений, которые используют эту информацию. O(1) labs полагается на этот источник данных в нескольких местах, и, вероятно, в основной сети будут новые пользователи этих данных.
 
-## C. Official Archive Node PostgreSQL
+## C. Официальная Архивная Нода PostgreSQL
 
-O(1) labs will support recovering missing data here from both (B) or (A) backups.
+O(1) labs будет поддерживать восстановление данных из резервных копий (B) или (A).
 
 The nice thing about the archive node is there are already consumers relying on queries for "what is the block at height N on the canonical chain". See [https://minaprotocol.com/docs/archive-node](https://minaprotocol.com/docs/archive-node) for more info.
 
