@@ -23,7 +23,7 @@ JSON будет развиваться по мере изменения форм
 
 Эта информация отображается в логах и передается на поток stdout. Мы можем предоставить инструменты фильтрации и получения только этих данных для их безопасного и постоянного хранения.
 
-## B. GraphQL JSON Снапшоты
+## B. JSON-Снапшоты GraphQL
 
 GraphQL сервер daemom Mina размещен на порте `0xc0d` или 3085 (по умолчанию, настраивается с помощью файла конфигурации или флага -rest-server-port) на вашем устройстве (вы можете открыть его для 0.0.0.0 с помощью -insecure-reset-server). Открытие этого порта для общего доступа в Интернет небезопасно.
 
@@ -35,7 +35,7 @@ GraphQL сервер daemom Mina размещен на порте `0xc0d` или
 
 O(1) labs будет поддерживать восстановление данных из резервных копий (B) или (A).
 
-The nice thing about the archive node is there are already consumers relying on queries for "what is the block at height N on the canonical chain". See [https://minaprotocol.com/docs/archive-node](https://minaprotocol.com/docs/archive-node) for more info.
+Преимущество архивной ноды состоит в том, что в сети уже есть пользователи, которые используют запросы вида: «какой блок находится на высоте N в канонической цепи». Смотрите [Https://minaprotocol.com/docs/archive-nodepting](https://minaprotocol.com/docs/archive-node) для получения дополнительной информации.
 
 ```
 WITH RECURSIVE chain AS (
@@ -55,13 +55,13 @@ WITH RECURSIVE chain AS (
 
 ```
 
-This can be tweaked to get all blocks within a window or all transactions within the blocks within a certain slice.
+Настройка позволяет получить информацию о блоках в одном окне или о транзакциях в определенном срезе блоков.
 
 ===
 
-## Liquid Balance Details:
+## Детали Ликвидного Баланса:
 
-All (A), (B), (C) have enough information to compute liquid balances for vesting accounts.
+Потоки (A), (B), (C) содержат достаточно информации для расчета ликвидных балансов на вестинговых счетах.
 
 If you'd like to expose liquid balances for vesting accounts at some particular time period it is governed by the following function (Note: this computes the locked portion of an account):
 
