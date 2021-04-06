@@ -22,7 +22,7 @@ export default Page({ title: "Mina Client SDK Keypair" });
 
 Открытый код для нашего клиентского SDK можно найти [здесь](https://github.com/MinaProtocol/mina/tree/develop/frontend/client_sdk).
 
-To get the client SDK installed, you will need NodeJS on your system. Make sure it is available on your machine and then use either yarn or npm to install the client SDK.
+Чтобы установить клиентский SDK, вам понадобится NodeJS. Убедитесь, что она доступна на вашем устройстве, а затем используйте yarn или npm для установки клиентского SDK. 
 
 ```bash
 # yarn:
@@ -32,9 +32,9 @@ yarn add @o1labs/client-sdk
 npm install --save @o1labs/client-sdk
 ```
 
-## Usage
+## Использование
 
-Creating a key pair is simple with our client SDK. See the snippet below to see how to get create a key pair.
+Создать пару ключей просто с помощью нашего клиентского SDK. Смотрите фрагмент ниже, чтобы узнать, как это сделать.
 
 ### NodeJS:
 ```javascript
@@ -44,15 +44,15 @@ let keys = MinaSDK.genKeys();
 console.log(`Public key: ${keys.publicKey}`)
 console.log(`Private key: ${keys.privateKey}`)
 ```
-This will print your private key so make sure you are in a secure environment when using this method.
+Этот метод выведет ваш закрытый ключ, поэтому убедитесь, что вы находитесь в безопасной обстановке при его использовании.
 
-Please see the [client SDK readme](https://github.com/MinaProtocol/mina/blob/develop/frontend/client_sdk/README.md) for more information on how to use our SDK.
+Ознакомьтесь с [клиентский SDK readme](https://github.com/MinaProtocol/mina/blob/develop/frontend/client_sdk/README.md) для более детальной информации по использованию SDK.
 
 <br />
 
 <Alert kind="warning">
 
-Never give out your private key and make sure they are stored safely. If you lose your private key or if a malicious actor gains access to your private key, you will lose access to your account and will lose your account funds. Always give out your public keys instead. Mina will never ask you for your private keys.
+Никогда не делитесь своим закрытым ключом и убедитесь в надежности его хранения. Если вы потеряете свой секретный ключ или злоумышленник получит к нему доступ, вы потеряете доступ к своей учетной записи и средствам на ней. Вместо этого всегда делитесь только своими открытыми ключами. Mina никогда не попросит у вас ваши закрытые ключи.
 
 </Alert>
 
