@@ -1,32 +1,32 @@
 import Page from '@reason/pages/Docs';
 export default Page({title: "Foundation Delegation Program"});
 
-# Рекомендации по Участию в Начальной Программе Делегирования
+# Рекомендации по Участию в Программе Делегирования Mina Foundation
 
-Ознакомьтесь с [политикой делегирования](https://minaprotocol.com/blog/mina-foundation-delegation-policy). В документе содержится подробная информация о том, что нужно сделать, чтобы выплатить вознаграждение, если вам делегируют средства, и как отправить данные о времени безотказной работы, чтобы получить или сохранить право на получение этих вознаграждений. 
+Ознакомьтесь с [политикой делегирования Foundation](https://minaprotocol.com/blog/mina-foundation-delegation-policy). В документе содержится подробная информация о том, что нужно сделать, чтобы выплатить вознаграждение, если вам делегируют средства, и как отправить данные о времени безотказной работы, чтобы получить или сохранить право на получение этих вознаграждений. 
 
-Fill out this form if you want to be eligible for future delegation [Form]().
+Заполните эту [Форму](), если вы хотите иметь право на делегирование в будущем. 
 
-O(1) Labs has separately adopted this guideline in consultation with the Foundation.
+O(1) Labs самостоятельно приняла это руководство при согласовании с Foundation.
 
-This should include all details that a block producer receiving such a delegation (let's call it the "token provider") delegations needs to understand to be compliant and maintain themselves as eligible for this delegation.
+Ниже представлены все детали, о которых должны знать блок-продюсеры, чтобы соответствовать требованиям и удовлетворять условиям делегирования от пользователей (назовем их «поставщиками токенов»). 
 
-## Payout Addresses
+## Адреса для Выплат
 
-You must send computed rewards as described below to the token provider addresses that delegate to you. If the Foundation is delegating to you, the Foundation will pick two addresses from the Foundation address list at the bottom of the page that will appear as delegations to you. You should distribute the rewards to both those addresses. If O(1) Labs is delegating to you, O(1) Labs will pick two addresses from the O(1) Labs address list at the bottom of the page that will appear as delegations to you. You must distribute the rewards to both addresses that are delegating to you.
+Вы должны отправить вознаграждения, полученные в ходе вычислений, на адреса поставщиков токенов, как описано ниже. Если Foundation делегирует вам токены, то выберет два адреса из списка адресов Foundation в нижней части страницы, которые будут отображаться для вас как делегированные. Вы должны распределить вознаграждения по обоим этим адресам. Если O(1) Labs делегирует вам токены, то выберет два адреса из списка адресов O(1) Labs внизу страницы, которые будут отображаться для вас как делегированные. Вы должны распределить вознаграждения по обоим адресам, делегировавшим вам токены.
 
-## Payout Frequency
+## Частота Выплат
 
-Rewards must be distributed at least once for a given epoch (but you can also send them more frequently), all the rewards for epoch N must be delivered (ie. accepted in a block, not just sent) no later than slot number 3,500 of the next epoch. This gives you about a week to sort out these payments.
+Вознаграждения должны распределяться хотя бы один раз в течение данной эпохи (но вы можете отправлять их и чаще), все вознаграждения для эпохи N должны быть доставлены адресатам (т.е. приняты в блоке, а не просто отправлены) не позднее, чем до слота номер 3,500 следующей эпохи. У вас будет около недели на то, чтобы произвести эти платежи.
 
-## Reward Specifications
+## Спецификации Вознаграждений
 
-You must send back **at least** the amount specified by this mechanism. If you send back more tokens, you will still be regarded as eligible — but you will not be refunded anything.
+Вы должны отправить **как минимум** сумму, указанную этим механизмом. Если вы отправите больше токенов, вы все равно останетесь правомочным участником, но не получите средства обратно.
 
-At the end of each epoch, do the following:
+В конце каждой эпохи сделайте следующее:
 
-1. Compute the total stake delegated to your account for the epoch
-2. Compute the share of stake from the token provider (from both accounts) by dividing the token provider delegation by the total stake. (i.e. `provider_share = provider_delegation / total_stake`). The resulting share should be between 0 and 1.
+1. Вычислите общую сумму делегированных вашей учетной записи токенов за эту эпоху
+2. Вычислите долю поставщика токенов (с обеих учетных записей), разделив сумму, делегированную поставщиками токенов на общую сумму токенов. (например `provider_share = provider_delegation / total_stake`). Результат должен находиться в пределах от 0 до 1.
 3. For each block produced on the canonical chain calculate the payout by multiplying the non-supercharged coinbase reward (equal to 720 MINA at Mainnet launch) by the provider share calculated in the previous step minus a 5% percent fee. (i.e. `payout = (provider_share * 0.95) * coinbase`)
 4. Send a transaction to the token provider accounts with the appropriate payout.
 
