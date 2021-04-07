@@ -27,16 +27,16 @@ O(1) Labs самостоятельно приняла это руководст�
 
 1. Вычислите общую сумму делегированных вашей учетной записи токенов за эту эпоху
 2. Вычислите долю поставщика токенов (с обеих учетных записей), разделив сумму, делегированную поставщиками токенов на общую сумму токенов. (например `provider_share = provider_delegation / total_stake`). Результат должен находиться в пределах от 0 до 1.
-3. For each block produced on the canonical chain calculate the payout by multiplying the non-supercharged coinbase reward (equal to 720 MINA at Mainnet launch) by the provider share calculated in the previous step minus a 5% percent fee. (i.e. `payout = (provider_share * 0.95) * coinbase`)
-4. Send a transaction to the token provider accounts with the appropriate payout.
+3. Для каждого блока, созданного в канонической цепи, рассчитайте выплату, умножив неудвоенное вознаграждение (равное 720 MINA при запуске Mainnet) на долю поставщика токенов, рассчитанную на предыдущем шаге, за вычетом комиссии 5%. (т.е. `payout = (provider_share * 0.95) * coinbase`)
+4. Отправьте транзакцию на счета поставщика токенов с соответствующей расчетам выплатой. 
 
-The canonical chain will be calculated as 12 blocks behind any tip at slot 3,500 of the next epoch.
+Каноническая цепь будет рассчитываться как 12 блоков за любой вершиной слота 3,500 следующей эпохи. 
 
-The block producer can keep all of the transaction fees or divide them equally amongst the other members of the pool. Note also, the token provider, Foundation or O(1), only expects to receive the pro-rated share of the coinbase *as if it were not super-charged*. If the block created was super charged, the extra coinbase can be distributed among the rest of the pool as you see fit. See [https://minaprotocol.com/docs/advanced/staking-service-guidelines](https://minaprotocol.com/docs/advanced/staking-service-guidelines) for details on the tooling and the terms used here for this approach.
+Блок-продюсер может оставить себе все комиссии за транзакции или разделить их поровну между другими участниками пула. Обратите внимание, что провайдер токенов, Foundation или O(1) ожидают получить только пропорциональную долю вознаграждений *как если бы она не была наградой суперчардж*. Если созданный блок был с удвоенной наградой суперчардж, дополнительные вознаграждения могут быть распределены между остальными участниками пула по вашему усмотрению. См. [https://minaprotocol.com/docs/advanced/staking-service-guidelines](https://minaprotocol.com/docs/advanced/staking-service-guidelines) для получения подробной информации об условиях и инструментах, используемых в этом подходе.
 
-### Example Reward Payout
+### Пример Выплаты Вознаграждения
 
-Consider the following:
+Рассмотрим следующие условия:
 
 - Account A has 1 million **locked** MINA
 - Account B and C are controlled by the Mina Foundation and have 2 million **locked** MINA each. Both accounts are delegating to Account A.
