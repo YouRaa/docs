@@ -2,23 +2,23 @@ import Page from "@reason/pages/Docs";
 import StatusBadge from "@reason/components/StatusBadge";
 export default Page({ title: "Connect to Devnet" });
 
-# Connect to Devnet
+# Подключение к Devnet
 
-In this section, we'll connect to the `Devnet` network. `Devnet` is a network dedicated for developers building on top of the Mina protocol. It is designed for testing
-and experimintation of developers and holds no real value. Users can reach out on Discord if they would like to request a prefunded account.
+В этом разделе мы подключимся к `Devnet`. `Devnet` - это сеть, предназначенная для разработчиков, использующих протокол Mina. Она разработана для тестирования
+и экспериментов разработчиков и не имеет реальной ценности. Пользователи могут связаться с нами в Discord, чтобы запросить доступ к предварительно пополненной учетной записи.
 
-Only use the `Devnet` network if you are a developer and building on top of the Mina protocol. If you are interested in running a node, please connect
-to [FinalFinal2](/docs/connecting) instead.
+Используйте `Devnet`, только если вы являетесь разработчиком и работаете на протоколе Mina. Если вы заинтересованы в запуске собственной ноды, вместо этого подключитесь
+к [FinalFinal2](/docs/connecting).
 
-## Update your software
+## Обновите Ваше ПО
 
-Connecting to `Devnet` requires a specific build of the Mina client as well as a specific version of a peers list. Using the `Devnet` build and peers list does not work for `Zenith`.
+Подключение к `Devnet` требует определенной сборки клиента Mina, а также определенной версии списка пиров. Использование сборки `Devnet` и списка пиров не работает для `Zenith`.
 
-Follow the instructions below for your operating system below.
+Следуйте приведенным ниже инструкциям для вашей операционной системы.
 
 ### Ubuntu 18.04 / Debian 9
 
-First remove any previously installed version of the daemon to prevent any errors when upgrading to the latest version. Then you can install the latest version as follows:
+Сначала удалите любую версию daemon, установленную ранее, чтобы избежать ошибок при обновлении. После этого вы можете установить последнюю версию следующим образом:
 
 ```
 sudo apt-get remove -y mina-testnet-postake-medium-curves
@@ -27,19 +27,19 @@ sudo apt-get update
 sudo apt-get install -y curl unzip mina-testnet-postake-medium-curves=1.0.5-68200c7
 ```
 
-Check that daemon installed correctly by running `mina version`. The output should read `Commit [DIRTY]68200c7b409e105d174f079c5c39f7926819784b on branch HEAD`.
+Убедитесь, что daemon установлен правильно, запустив `mina version`. На выходе должно появиться сообщение `Commit [DIRTY]68200c7b409e105d174f079c5c39f7926819784b on branch HEAD`.
 
-## Start up a node
+## Запустите ноду
 
 <Alert kind="status">
 
-You can find the current status of the network and related services here: [status.minaprotocol.com](https://status.minaprotocol.com)
+Здесь вы можете увидеть текущий статус сети и связанных с ней сервисов: [status.minaprotocol.com](https://status.minaprotocol.com)
 
-Testnet Status: <StatusBadge service="Network" />
+Статус Тестовой Сети: <StatusBadge service="Network" />
 
 </Alert>
 
-Run the following commands to start up a Mina node instance and connect to the `Devnet` network:
+Выполните следующие команды, чтобы запустить ноду Mina и подключиться к сети `Devnet`:
 
 ```
 mina daemon -generate-genesis-proof true --peer-list-url https://storage.googleapis.com/seed-lists/devnet_seeds.txt
@@ -47,7 +47,7 @@ mina daemon -generate-genesis-proof true --peer-list-url https://storage.googlea
 
 ### Docker
 
-When running your daemon using Docker, first ensure that your private key has the correct permissions.
+При запуске вашего daemon с помощью Docker сначала убедитесь, что разрешения к вашему закрытому ключу настроены правильно.
 
 ```
 cd ~
@@ -56,7 +56,7 @@ chmod 600 ~/keys/my-wallet
 mkdir ~/.mina-config
 ```
 
-Now simply run the image with your keys and ~/.mina-config mounted:
+Теперь просто запустите образ с вашими ключами и смонтированным ~/.mina-config:
 
 ```
 docker run --name mina -d \
@@ -74,6 +74,6 @@ daemon \
 --peer-list-url https://storage.googleapis.com/seed-lists/devnet_seeds.txt
 ```
 
-Run `docker logs -f mina` to follow the logs, and if it crashes save the log output to a file with `docker logs mina > mina-log.txt`.
+Запустите `docker logs -f mina`, чтобы следить за логами, и в случае сбоя сохраните логи в файл с `docker logs mina > mina-log.txt`.
 
-Run `docker exec -it mina mina client status` to monitor connectivity to the network.
+Запустите `docker exec -it mina mina client status`, чтобы отслеживать состояние подключения к сети.
