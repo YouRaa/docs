@@ -13,54 +13,54 @@ export default Page({ title: "Ledger App Mina" });
 - Подпись транзакций
 - Подпись транзакций при делегировании
 
-We are in the process of an independent a security audit which has currently found no vulnerabilities, otherwise development is nearly completed. In the next week or so, we will be tweaking one constant related to signatures so that transactions cannot be replayed from a testnet to mainnet. Note that this does not affect key generation.
+Мы проходим независимый аудит безопасности, который на данный момент не обнаружил уязвимостей, остальная разработка практически завершена. В течение следующей недели мы будем заниматься настройкой работы с подписями, чтобы транзакции из тестовой сети не могли быть воспроизведены в mainnet. Заметьте, что это не влияет на процесс генераци ключей.
 
-The app is not yet available for install through the Ledger Live user interface, but if you have a Nano S, you can sideload it onto your Ledger device by following the instructions below.
+Приложение еще не доступно для установки через интерфейс Ledger Live, но если у вас есть Nano S, вы можете загрузить его на свой Ledger, следуя приведенным ниже инструкциям.
 
 <Alert kind="warning">
-We are currently wrapping up a security audit which has found no vulnerabilities, otherwise development is nearly completed.
+В настоящее время мы завершаем аудит безопасности, который не обнаружил уязвимостей, остальная разработка почти завершена.
 
-Use at your own risk.  Make sure you have a backup of your Ledger's BIP39 secret
-mnemonic phrase or use a separate Ledger device for testing this app.
+Используйте на ваш собственный риск. Убедитесь, что у вас есть резервная копия BIP39 секретной 
+мнемонической фразы вашего Ledger или используйте отдельный Ledger для тестирования этого приложения.
 
-Never reuse the same keypair from a testnet on mainnet!
+Никогда не используйте одну и ту же пару ключей из тестовой сети в mainnet!
 </Alert>
 
 ## Contents
 
-- [Installing on Ubuntu](#installing-on-ubuntu)
-- [Installing on Mac](#installing-on-mac)
-- [Installing on Windows](#installing-on-windows)
-- [Generating a keypair](#generating-a-keypair)
-- [Validating your private key](#validating-your-private-key)
-- [Offline Mode](#offline-mode)
+- [Установка на Ubuntu](#installing-on-ubuntu)
+- [Установка на Mac](#installing-on-mac)
+- [Установка на Windows](#installing-on-windows)
+- [Генерация пары ключей](#generating-a-keypair)
+- [Проверка вашего закрытого ключа](#validating-your-private-key)
+- [Автономный Режим](#offline-mode)
 
-## Installing on Ubuntu
+## Установка на Ubuntu
 
-Before installing please make sure your Ledger device is updated to the latest firmware and fully configured.  In particular, make sure that Ledger's udev rules are installed.
+Перед установкой убедитесь, что ваше устройство Ledger обновлено до последней версии и полностью настроено. В частности, убедитесь, что в Ledger установлены правила udev.
 
-If the udev rules are installed then `/etc/udev/rules.d/20-hw1.rules` will exist.  If this file is not present then you need to visit Ledger's website and follow the [Linux instructions for fixing connection issues](https://support.ledger.com/hc/en-us/articles/115005165269-Fix-connection-issues) or,
-for advanced users, you can find the udev rules on the [LedgerHQ Github](https://github.com/LedgerHQ/udev-rules).
+Если правила udev установлены, должен существовать файл `/etc/udev/rules.d/20-hw1.rules`. Если этот файл отсутствует, вам необходимо посетить веб-сайт Ledger и следовать [инструкциям Linux по устранению проблем с подключением](https://support.ledger.com/hc/en-us/articles/115005165269-Fix-connection-issues) или же,
+если вы являетесь опытным пользователем, вы можете найти правила udev на [LedgerHQ Github](https://github.com/LedgerHQ/udev-rules).
 
-### 1) Install Python 3
+### 1) Установите Python 3
 
 ```
 $ sudo apt-get install python3
 ```
 
-### 2) Install pip3
+### 2) Установите pip3
 
 ```
 $ sudo apt-get install python3-pip
 ```
 
-### 3) Install prerequisite libraries
+### 3) Установите необходимые библиотеки
 
 ```
 sudo apt-get install libudev-dev libusb-1.0-0-dev python-dev virtualenv
 ```
 
-### 4) Install Python tools for Ledger Blue, Nano S and Nano X
+### 4) Установить инструменты Python для Ledger Blue, Nano S и Nano X
 
 ```
 $ sudo pip3 install ledgerblue
