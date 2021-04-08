@@ -7,7 +7,7 @@ export default Page({ title: "Hot / Cold Block Production" });
 
 Кошелек называется «холодным», если закрытый ключ не доступен и никогда ранее не был доступен в сети интернет. Холодное хранение предпочтительнее для кошельков, содержащих значительные суммы, поскольку такие системы сложнее взломать, так как они никогда не подсоединялись к интернет-сети. Это так же просто, как создать пару ключей на ноутбуке с отключенным интернетом или использовать аппаратный кошелек, такой, как, [например, устройство Ledger](https://shop.ledger.com/).
 
-Протокол Mina требует от блок-продюсеров использования горячего кошелька (смотрите почему это так в последнем разделе этой статьи) -- однако, существуют механизмы, позволяющие предусмотрительным блок-продюсерам хранить большую часть своих средств на холодном кошельке. Произведенные блоки и все связанные с ними доходы возникают посредством делегирования с этого холодного кошелька на горячий.
+Протокол Mina требует от блок-продюсеров использования горячего кошелька (смотрите, почему это так в последнем разделе этой статьи) -- однако, существуют механизмы, позволяющие предусмотрительным блок-продюсерам хранить большую часть своих средств на холодном кошельке. Произведенные блоки и все связанные с ними доходы возникают посредством делегирования с этого холодного кошелька на горячий.
 
 В следующей части статьи описаны действия, необходимые для эффективного создания блоков, когда большая часть ваших средств попадает на холодный кошелек и остается там. 
 
@@ -19,40 +19,38 @@ export default Page({ title: "Hot / Cold Block Production" });
 
 Посмотрите страницу нашей документации по [генерации ключей](/docs/keypair). Обратите внимание, что, поскольку это горячий кошелек, вам не следует использовать ledger или любые другие HSM для этой пары ключей.
 
-Take note of your hot public key.
+Запишите свой горячий открытый ключ.
 
-### Fill your hot wallet with some dust
+### Положите на свой горячий кошелек некоторое количество токенов
 
-Your hot wallet must be present in the consensus ledger before it can be used for staking. If your hot wallet address is present in the genesis ledger, then no further action is needed. However, if it is not, it's important that you acquire at least enough mina tokens to cover the account-creation-fee and send those tokens to this public key.
+Прежде чем использовать горячий кошелек, он должен попасть в главную книгу консенсуса. Если адрес вашего горячего кошелька присутствует в Genesis-книге, никаких дальнейших действий не требуется. Если это не так, вам необходимо будет приобрести некоторое количество токенов mina, необходимое для платы за создание аккаунта, и отправить эти токены на этот открытый ключ. 
 
-### Creating a cold wallet
+### Создание холодного кошелька
 
-See our documentation page on [generating keys](/docs/keypair). Note that as this is a cold wallet, you should prefer using the most secure mechanism for generating keys as you can preferably on a machine disconnected from the internet.
+Посмотрите страницу нашей документации по [генерации ключей](/docs/keypair). Обратите внимание, что так как это холодный кошелек, вы должны использовать наиболее безопасный механизм для генерации ключей, который выполняется на неподключенном к сети интернет устройстве.
 
-### Configuring your cold wallet
+### Настройка холодного кошелька
 
-Your cold wallet must be present in the consensus ledger before its stake can be counted when delegated to your hot wallet. If you cold wallet address is present in the genesis ledger, then no further action is needed. Otherwise, acquire enough tokens to meaningfully participate in consensus and send it to this cold wallet address.
+Ваш холодный кошелек должен присутствовать в главной книге консенсуса, прежде чем его баланс может быть подсчитан при передаче на ваш горячий кошелек. Если адрес вашего холодного кошелька присутствует в Genesis-книге, дальнейшие действия не требуются. В противном случае приобретите достаточное количество токенов для значимого участия в консенсусе и отправьте их на этот адрес холодного кошелька.
 
-### Delegate your cold wallet to your hot wallet
+### Делегирование с холодного на горячий кошелек
 
-Next, ensure that you have delegated your cold account to your hot one. If you've set up your account to delegate to the correct spot in the genesis ledger, then no further action is needed. Otherwise you can delegate by using the `mina client delegate-stake` command if your key was generated on a computer. Otherwise, see the delegate instructions on the [Mina ledger README](https://github.com/jspada/ledger-app-mina/tree/v1.0.0-beta.2) to learn more.
+Теперь вам этого необходимо убедиться, что вы делегировали средства с холодного на горячий кошелек. Если вы настроили свой аккаунт для делегирования на корректный адрес в genesis-книге, дальнейшие действия не требуются. В противном случае вы можете делегировать с помощью команды `mina client delegate-stack`, если ваш ключ был сгенерирован на компьютере. Если это не так, смотрите инструкции по делегированию в [Mina ledger README](https://github.com/jspada/ledger-app-mina/tree/v1.0.0-beta.2), чтобы узнать больше.
 
-## Block Production
+## Создание блоков
 
-Follow the "Start up a node" instructions in the [Connecting to the Network](/docs/connecting) page using your hot wallet key.
+Следуйте инструкциям по «Запуску ноды» на странице [Подключение к сети](/docs/connecting), используя ключ горячего кошелька.
 
-## Protocol Details
+## Детали протокола
 
-You may be thinking: Why can't I create blocks directly from a secure enclave or other HSM device in Mina's protocol?
+Вы можете подумать: почему я не могу создавать блоки непосредственно из безопасного анклава или другого HSM-устройства в протоколе Mina?
 
-Two components of block production require use of the private key in interesting ways: Winning a slot and creating the Blockchain SNARK. Creating the SNARK within the secure hardware especially is extremely difficult and likely impossible to do quickly enough for our protocol given today's technology.
+Два компонента создания блоков требуют использования закрытого ключа необычными способами: выигрыш слота и создание блокчейн-снарков. Создание снарков на защищенном оборудовании чрезвычайно сложно и, вероятно, не может производиться достаточно быстро для нашего протокола с учетом сегодняшних технологий.
 
-### Winning a slot (out of the snark)
+### Выигрыш слота (из снарка)
 
-A block producer can determine if they've won a slot by evaluating a VRF (or verifiable random function) using their private key. The VRF needs to be evaluated for your account and every account that delegates to you for all slots within an epoch. To our knowledge, no one has ever implemented a VRF on an HSM, but this is likely not too difficult.
+Блок-продюсер может определить, выиграли ли они слот, оценив VRF (или проверяемую случайную функцию), используя свой закрытый ключ. VRF необходимо оценить для вашего аккаунта и всех аккаунтов, которые вам делегируют, для всех слотов в течение эпохи. Насколько нам известно, никто никогда не реализовывал VRF на HSM, но, вероятно, это не так сложно.
 
-### Creating the Blockchain SNARK
+### Создание Блокчейн-Снарка
 
-When a block producer wins a slot, in addition to just creating and broadcasting a block, a block producer must create a new SNARK proof that proves that the blockchain is valid including this new block. The SNARK proof uses the private key when it is embedding the VRF information into the proof. This proof is in place of a simple signature that other protocols ask their validators to perform. Creating this SNARK proof is very computationally expensive and relies on a lot of advanced cryptography. No HSMs on the market are capable of creating this SNARK proof efficiently enough even if one spent the time to implement the SNARK proving algorithm on them.
-
-
+Когда блок-продюсер выигрывает слот, помимо создания и трансляции блока в сеть, он должен создать новое SNARK-доказательство, которое потдверждает действительность всего блокчейна, включая этот новый блок. SNARK-доказательство использует закрытый ключ при внесении информации о VRF в доказательство. Это доказательство заменяет простую цифровую подпись, которую другие протоколы запрашивают у своих валидаторов. Создание этого SNARK-доказательства очень затратно с точки зрения вычислительных ресурсов и основано на продвинутых криптографических алгоритмах. Ни один HSM на рынке не способен создать это SNARK-доказательство достаточно эффективно, даже если будет потрачено время на реализацию алгоритма SNARK-доказательства для него.
