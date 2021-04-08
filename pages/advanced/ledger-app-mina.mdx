@@ -2,16 +2,16 @@ import Page from "@reason/pages/Docs";
 export default Page({ title: "Ledger App Mina" });
 
 
-# Ledger Hardware Wallet
+# Аппаатный Кошелек Ledger
 
-You can use your [Ledger Nano S](https://www.ledger.com/) hardware wallet to securely store your Mina private keys.
+Вы можете использовать аппаратный кошелек [Ledger Nano X](https://www.ledger.com/) для безопасного хранения закрытых ключей Mina.
 
-We are working on support for [Ledger Nano X](https://www.ledger.com/), but it is not yet completed.
+Мы работаем над поддержкой [Ledger Nano X](https://www.ledger.com/), но в настоящий момент она недоступна.
 
-The operations supported are
-- Keypair generation
-- Signing payment transactions
-- Signing delegation transactions
+Поддерживаемые операции
+- Генерация пар ключей
+- Подпись транзакций
+- Подпись транзакций при делегировании
 
 We are in the process of an independent a security audit which has currently found no vulnerabilities, otherwise development is nearly completed. In the next week or so, we will be tweaking one constant related to signatures so that transactions cannot be replayed from a testnet to mainnet. Note that this does not affect key generation.
 
