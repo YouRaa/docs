@@ -1,23 +1,23 @@
 import Page from "@reason/pages/Docs";
 export default Page({ title: "Hot / Cold Block Production" });
 
-# Hot / Cold Block Production
+# Hot / Cold Создание Блоков
 
-Block production is a complex process and requires a node to connect to the internet. A wallet is said to be "hot" if the private key is available on a machine that is connected to the internet. More careful block producers may wish to avoid having hot wallets with substantial stake on them to mitigate risk in the case of hackers breaking into their systems.
+Производство блоков - это сложный процесс, который требует наличие ноды для подключения к сети интернет. Кошелек называется «горячим», если закрытый ключ доступен на устройстве, подключенном к сети интернет. Более осторожные блок-продюсеры могут захотеть избежать использования горячих кошельков со значительными суммами средств на них, чтобы снизить риск в случае хакерской атаки на их систему.
 
-A wallet is said to be "cold" if the private key is not and never has been available on the internet. Cold storage is preferred for wallets associated with meaningful stake as it is harder to hack into such systems if they never have been on the internet. This could be as easy as generating a keypair on a laptop with the internet turned off or using a hardware wallet [like the a ledger device](https://shop.ledger.com/).
+Кошелек называется «холодным», если закрытый ключ не доступен и никогда ранее не был доступен в сети интернет. Холодное хранение предпочтительнее для кошельков, содержащих значительные суммы, поскольку такие системы сложнее взломать, так как они никогда не подсоединялись к интернет-сети. Это так же просто, как создать пару ключей на ноутбуке с отключенным интернетом или использовать аппаратный кошелек, такой, как, [например, устройство Ledger](https://shop.ledger.com/).
 
-Mina's protocol requires block producers to stake using a hot wallet (see why in the last section of this article) -- however, there are some mechanisms in place to allow careful block producers to keep the vast majority of their stake in a cold wallet. Produced blocks and all the earnings associated with the produced blocks occur via delegation from this cold wallet to a hot one.
+Протокол Mina требует от блок-продюсеров использования горячего кошелька (смотрите почему это так в последнем разделе этой статьи) -- однако, существуют механизмы, позволяющие предусмотрительным блок-продюсерам хранить большую часть своих средств на холодном кошельке. Произведенные блоки и все связанные с ними доходы возникают посредством делегирования с этого холодного кошелька на горячий.
 
-The next chunk of this article describes the actions needed to produce blocks effectively with the majority of your stake starting on and remaining on a cold wallet.
+В следующей части статьи описаны действия, необходимые для эффективного создания блоков, когда большая часть ваших средств попадает на холодный кошелек и остается там. 
 
-## Prerequisites
+## Предпосылки
 
-Before running your block producer, you'll need at least two accounts: One cold wallet and one hot wallet.
+Перед запуском блок-продюсера вам понадобятся как минимум два аккаунта: один холодный кошелек и один горячий кошелек.
 
-### Creating a hot wallet
+### Создание горячего кошелька
 
-See our documentation page on [generating keys](/docs/keypair). Note that as this is a hot wallet, you should not use the ledger or any other HSM for this keypair.
+Посмотрите страницу нашей документации по [генерации ключей](/docs/keypair). Обратите внимание, что, поскольку это горячий кошелек, вам не следует использовать ledger или любые другие HSM для этой пары ключей.
 
 Take note of your hot public key.
 
