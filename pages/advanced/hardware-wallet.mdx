@@ -31,26 +31,26 @@ export default Page({ title: "Hardware Wallet" });
 sudo apt install libusb-1.0-0-dev libudev1 libudev-dev
 ```
 
-### Make sure your computer is recognising the Ledger device
+### Убедитесь, что ваш компьютер распознает устройство Ledger
 
-- Plug in the Ledger device, unlock it with your passcode, and go to the menu. Don't open any app,
-- Run `lsusb`, and see if the device is listed -- it will have ID `2c97:0001`
-- If the Ledger device is not listed, follow the suggestions
-  [here](https://support.ledger.com/hc/en-us/articles/115005165269-Fix-connection-issues).
+- Подключите устройство Ledger, разблокируйте его с помощью вашего пароля и перейдите в меню. Не открывайте никаких приложений,
+- Запустите `lsusb` и посмотрите, есть ли устройство в списке -- оно будет иметь ID `2c97:0001`
+- Если устройства Ledger нет в списке, следуйте рекомендациям
+  [здесь](https://support.ledger.com/hc/en-us/articles/115005165269-Fix-connection-issues).
 
-### Install the python app loader
+### Установите python загрузчик приложений 
 
-The Ledger python loader exists [here](https://github.com/LedgerHQ/blue-loader-python)
-and can be downloaded/installed with the following:
+Загрузчик приложений python для Ledger находится [здесь](https://github.com/LedgerHQ/blue-loader-python)
+и может быть загружен/установлен следующим образом:
 
 ```
 sudo apt install -y libudev-dev libusb
 pip3 install ledgerblue
 ```
 
-After installing, when running on Linux, make sure the following rules have been
-added to `/etc/udev/rules.d/` (e.g. with `sudo vim /etc/udev/rules.d/20-hw1.rules`),
-changing `<UNIX username>` to your unix username:
+При работе в Linux после установки убедитесь, что следующие правила
+добавлены в `/etc/udev/rules.d/` (например, с помощью `sudo vim /etc/udev/rules.d/20-hw1.rules`),
+изменяющие `<UNIX username>` на ваше имя пользователя unix:
 
 ```
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="2c97", ATTRS{idProduct}=="0000", MODE="0660", TAG+="uaccess", TAG+="udev-acl" OWNER="<UNIX username>"
@@ -58,14 +58,14 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="2c97", ATTRS{idProduct}=="0001", MODE="0660
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="2c97", ATTRS{idProduct}=="0004", MODE="0660", TAG+="uaccess", TAG+="udev-acl" OWNER="<UNIX username>"
 ```
 
-### Build/download the Mina Ledger application
+### Соберите/загрузите приложение Ledger для Mina
 
-Either download the precompiled app binary from
-[here](https://github.com/MinaProtocol/ledger-mina-app/releases/tag/v0.1.0), or follow the instructions
-at the end of this document to [build the app from source](/docs/hardware-wallet#building-from-source).
+Либо загрузите скомпилированный файл приложения
+[здесь](https://github.com/MinaProtocol/ledger-mina-app/releases/tag/v0.1.0), либо следуйте инструкциям
+в конце этого документа, чтобы самостоятельно [собрать приложение из исходников](/docs/hardware-wallet#building-from-source).
 
-To load the precompiled app onto the Ledger device, after downloading `ledger-precompile.zip`
-from the link above, navigate to the directory that `ledger-precompile.zip` is in, and run the following:
+Чтобы загрузить скомпилированное приложение на устройство Ledger, после скачивания `ledger-precompile.zip`
+по ссылке выше перейдите в каталог, в котором находится `ledger-precompile.zip`, и выполните следующее:
 
 ```
 unzip ledger-precompile.zip
@@ -73,105 +73,105 @@ cd ledger-precompile
 ./load.sh
 ```
 
-To delete the app, you can run
+Чтобы удалить приложение, вы можете выполнить
 
 ```
 ./delete.sh
 ```
 
-# Using the hardware wallet
+# Использование аппаратного кошелька
 
-The mina hardware wallet command line tool is a python package called `mina-ledger-cli`:
+Инструмент командной строки аппаратного кошелька mina - это пакет Python под названием `mina-ledger-cli`:
 
 ```
 python3 -mpip install mina-ledger-cli==0.0.5
 ```
 
-If you have connection issues with your hardware wallet, please take a look at
-[the troubleshooting help on the Ledger support page](https://support.ledger.com/hc/en-us/articles/115005165269-Fix-connection-issues).
-Oftentimes, connectivity issues can be resolved by adding udev rules. Enter the
-following command to automatically add the rules and reload udev:
+Если у вас есть проблемы с подключением к аппаратному кошельку, пожалуйста, ознакомьтесь со
+[справкой по устранению неполадок на странице поддержки Ledger](https://support.ledger.com/hc/en-us/articles/115005165269-Fix-connection-issues).
+Часто проблемы с подключением можно решить, добавив правила udev. Введите
+следующую команду для автоматического добавления правил и перезагрузки udev:
 
 ```
 wget -q -O - https://raw.githubusercontent.com/LedgerHQ/udev-rules/master/add_udev_rules.sh | sudo bash
 ```
 
-## Create a new account
+## Создайте новый аккаунт
 
-Run the following command which will create a public and private keypair in the hardware wallet:
+Выполните следующую команду, которая создаст пару из открытого и закрытого ключей в аппаратном кошельке:
 
     mina accounts create-hd HD-index
 
-HD-index is a number that works like a seed that you give to the hardware wallet
-to create your public and private keypair. If you use the same HD-index with the
-same hardware wallet twice, then public and private keypair that gets generated
-is the same. If you need to use the same account on another machine, then you
-just need to use this command with the same HD-index and the same hardware wallet.
+HD-индекс - это число, которое работает как сид-фраза, которую вы задаете аппаратному кошельку
+для создания вашей пары из открытого и закрытого ключей. Если вы используете тот же HD-индекс с
+одним и тем же аппаратным кошельком дважды, сгенерируемая пара открытого и закрытого ключей
+останется той же. Если вы хотите воспользоваться тем же аккаунтом на другом компьютере, вам
+просто нужно использовать эту команду с тем же HD-индексом и тем же аппаратным кошельком.
 
-During account creation, your hardware wallet may ask you to confirm the operation.
+Во время создания аккаунта ваш аппаратный кошелек может попросить вас подтвердить операцию.
 
-The response from this command will look like this:
+Ответ этой команды будет выглядеть так:
 
     Keypair generated
     Public key:  B62qrPN5Y5yq8kGE3FbVKbGTdTAJNdtNtB5sNVpxyRwWGcDEhpMzc8g
 
-Since the public key is quite long and difficult to remember, let's save it as
-an environment variable:
+Поскольку открытый ключ достаточно длинный и его сложно запомнить, сохраним его как
+переменную среды:
 
     export MINA_PUBLIC_KEY=<YOUR-PUBLIC-KEY>
 
-Now we can access this everywhere as `$MINA_PUBLIC_KEY` -- see if it saved
-properly by trying `echo $MINA_PUBLIC_KEY`.
+Теперь мы можем получить доступ к ней как `$MINA_PUBLIC_KEY` -- удостоверьтесь, что она сохранилась 
+правильно, используя команду `echo $MINA_PUBLIC_KEY`.
 
-## Make a payment
+## Совершите платеж
 
-You can use the same commands to send payments found in
-[the docs](/docs/my-first-transaction/).
+Вы можете использовать те же команды для отправки платежей, что и в
+[документы](/docs/my-first-transaction/).
 
-There are 2 differences:
+Есть 2 различия:
 
-1. You do not need to unlock your account before sending the transaction because
-   your account is protected by your hardware wallet already.
-2. Your hardware wallet may ask you to confirm the operation while signing the
-   transaction.
+1. Вам не нужно разблокировать свою учетную запись перед отправкой транзакции, потому что
+   ваш аккаунт уже защищен аппаратным кошельком.
+2. Ваш аппаратный кошелек может попросить вас подтвердить операцию при подписании
+   транзакции.
 
-## Troubleshooting
+## Устранение неполадок
 
-### What if I lose my hardware wallet?
+### Что если я потеряю свой аппаратный кошелек?
 
-You can buy another `Ledger Nano S` and initialize it with the same 24-word
-seed to gain access to your existing account.
+Вы можете купить еще один `Ledger Nano S` и запустить его при помощи той же сид-фразы из 24 слов,
+чтобы получить доступ к вашему существующему аккаунту.
 
-### What if I forget the public key of my account?
+### Что если я забуду открытый ключ моего аккаунта?
 
-If you remember the HD-index which you use to generate your account, then you
-can use `mina accounts create-hd HD-index` with the same HD-index to regenerate
-the public_key.
+Если вы помните HD-индекс, который используется для создания учетной записи, то вы
+может использовать `mina accounts create-hd HD-index` с тем же HD-индексом для повторной генерации
+открытого ключа.
 
-## Building from source
+## Сборка из исходников
 
-Building the Ledger app from source requires installing versions of gcc and clang.
-This can be done in two ways: you can install them with `sudo apt install gcc clang`,
-or you can download precompiled versions of both clang and gcc and then add them
-to your `PATH`.
+Для сборки приложения Ledger из исходников требуется установка версий gcc и clang.
+Это можно сделать двумя способами: вы можете установить их с помощью `sudo apt install gcc clang`,
+или загрузить предварительно скомпилированные версии clang и gcc, а затем добавить их
+в вашу `PATH`.
 
-### Downloading precompiled gcc and clang
+### Загрузка скомпилированных gcc и clang
 
-Following the instructions at [the Ledger Wiki](https://ledger.readthedocs.io/en/latest/userspace/getting_started.html):
+Следуя инструкциям в [Ledger Wiki](https://ledger.readthedocs.io/en/latest/userspace/getting_started.html):
 
-- Install standard gcc (for microcontroller firmware and secure device linking)
-  (link from ledger link?), by downloading a precompiled binary from
-  [here](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
-- Install a standard clang with ROPI support (for secure processor applications),
-  following the instructions [here](https://clang.llvm.org/get_started.html) to
-  build from source or download a precompiled binary.
-- Once you have downloaded the binaries, unzip and install them, for example with
+- Установите стандартный gcc (для прошивки микроконтроллера и безопасного подключения устройств)
+  !!!!!(link from ledger link?)!!!!!, загрузив скомпилированный двоичный файл
+  [здесь](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
+- Установите стандартный clang с поддержкой ROPI (для приложений с защищенным процессором),
+  следуя инструкциям [здесь](https://clang.llvm.org/get_started.html), чтобы
+  собрать из исходников или загрузить предварительно скомпилированный файл.
+- После загрузки двоичных файлов разархивируйте и установите их, например, с помощью 
   ```
   cd Downloads
   tar -xf clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
   bzip2 -dk gcc-arm-none-eabi-5_3-2016q1tar.bz2
   ```
-  and then add them to your PATH with
+  и затем добавьте их в свою PATH с помощью
   ```
   # GCC
   PATH=~/bolos-devenv/gcc-arm-none-eabi-5_3-2016q1/bin:$PATH
@@ -179,23 +179,23 @@ Following the instructions at [the Ledger Wiki](https://ledger.readthedocs.io/en
   PATH=~/bolos-devenv/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04/bin:$PATH
   ```
 
-Next, to install the cross compilation headers required, use:
+Далее, для установки требуемых заголовков кросс-компиляции, используйте:
 
 ```
 sudo apt install gcc-multilib g++-multilib
 ```
 
-Then install the Nano S SDK with
+Затем установите Nano S SDK с помощью
 
 ```
 git clone git@github.com:LedgerHQ/nanos-secure-sdk.git
 ```
 
-and add `export BOLOS_SDK=<PATH-TO-SDK>` to your `~/.bashrc` or `~/.profile`.
+и добавьте `export BOLOS_SDK=<PATH-TO-SDK>` в ваш `~/.bashrc` или `~/.profile`.
 
-### Build and Load the Mina Ledger app
+### Соберите и загрузите приложение Mina для Ledger
 
-Running the following will install the Mina app on your Ledger device:
+Выполнение следующей команды установит приложение Mina на ваше устройство Ledger:
 
 ```
 git clone git@github.com:MinaProtocol/ledger-mina-app.git
