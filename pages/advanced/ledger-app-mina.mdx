@@ -68,7 +68,7 @@ $ sudo pip3 install ledgerblue
 
 ### 5) Скачайте ledger-app-mina
 
-Загрузите [Последний Релиз Ledger App Mina](https://github.com/jspada/ledger-app-mina/releases/latest) с Github.  Мы тестируем версию 1.0.0-beta.4
+Загрузите [Последний Релиз Ledger App Mina](https://github.com/jspada/ledger-app-mina/releases/latest) на Github.  Мы тестируем версию 1.0.0-beta.4
 
 ### 6) Проверьте контрольную сумму
 
@@ -90,7 +90,7 @@ ledger-app-mina-1.0.0-beta.4-0-gb92ffef9/bin/app.hex
 ```
 ### 8) Запустите установочный скрипт
 
-Примечание: Вы можете удалить его с помощью `uninstall.sh`, если у вас установлена предыдущая версия.
+Примечание: Вы можете воспользоваться `uninstall.sh`, чтобы удалить предыдущую версию.
 
 ```
 $ cd ledger-app-mina-1.0.0-beta.4-0-gb92ffef9
@@ -100,7 +100,7 @@ Generated random root public key : b'04e95715d4813ab98c92833da9b169d3ff6ee11a4f9
 Using test master key b'04e95715d4813ab98c92833da9b169d3ff6ee11a4f94a465503cc91e77aaea688d45a0449f41bfaa2a1a789730e72d0ace759ca7c2b8a12e82c94cda61530cc363'
 ```
 
-Это запустит процесс установки приложения (продолжаящийся в следующих шагах).
+Это запустит процесс установки приложения (продолжающийся на следующих шагах).
 
 Важно: Если вы проверили контрольную сумму на шаге (6), вы можете игнорировать открытые ключи, указанные выше, а также «Идентификатор приложения» и «Полный хэш приложения» на следующих шагах. Эти предупреждения вызваны тем, что ledger-app-mina еще не является утвержденным Ledger приложением.
 
@@ -120,7 +120,7 @@ Using test master key b'04e95715d4813ab98c92833da9b169d3ff6ee11a4f94a465503cc91e
 
 Выберите этот вариант.
 
-### 10) Установите app Mina
+### 10) Установите приложение Mina
 
 Ваше устройство Ledger спросит, хотите ли вы установить приложение Mina.
 
@@ -136,51 +136,51 @@ Using test master key b'04e95715d4813ab98c92833da9b169d3ff6ee11a4f94a465503cc91e
 
 Выберите этот вариант и введите свой PIN-код от Ledger.
 
-If the installation was successful the install script will terminate successfully and you will see the Mina logo among your list of installed apps.
+Если установка прошла успешно, скрипт завершится, и вы увидите логотип Mina в списке установленных приложений.
 
-### 11) Install the command-line wallet
+### 11) Установите command-line кошелек
 
 ```
 $ sudo cp ./mina_ledger_wallet /usr/local/bin/
 ```
 
-## Installing on Mac
+## Установка на Mac
 
-Before installing please make sure your Ledger device is updated to the latest firmware and fully configured.
+Перед установкой убедитесь, что ваше устройство Ledger обновлено до последней версии и полностью настроено.
 
-### 1) Install Homebrew
+### 1) Установите Homebrew
 
 ```
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-For more information please visit the [Homebrew website](https://brew.sh/)
+Для более детальной информации посетите [вебсайт Homebrew](https://brew.sh/)
 
-### 2) Install python3
+### 2) Установите python3
 
 ```
 brew install python3
 ```
 
-### 3) Install Python tools for Ledger Blue, Nano S and Nano X
+### 3) Установите инструменты Python для Ledger Blue, Nano S and Nano X
 
 ```
 $ pip3 install ledgerblue
 ```
 
-### 4) Download ledger-app-mina
+### 4) Установите ledger-app-mina
 
-Download the [Latest Ledger App Mina Release](https://github.com/jspada/ledger-app-mina/releases/latest) from Github.
+Загрузите [Последний Релиз Ledger App Mina](https://github.com/jspada/ledger-app-mina/releases/latest) на Github.
 
-### 5) Verify the checksum
+### 5) Проверьте контрольную сумму
 
 ```
 shasum -a 256 ledger-app-mina-1.0.0-beta.4-0-gb92ffef9.tar.gz
 ```
 
-Compare the output of the above command to the SHA256 hash on the release download page.  If they match, then proceed to the next step.
+Сравните вывод указанной команды с SHA256-хешем на странице загрузки данного релиза. Если они совпадают, переходите к следующему шагу.
 
-### 6) Extract the archive
+### 6) Извлеките архив
 
 ```
 $ tar xvzf ledger-app-mina-1.0.0-beta.4-0-gb92ffef9.tar.gz
@@ -190,9 +190,9 @@ ledger-app-mina-1.0.0-beta.4-0-gb92ffef9/uninstall.sh
 ledger-app-mina-1.0.0-beta.4-0-gb92ffef9/mina_ledger_wallet
 ledger-app-mina-1.0.0-beta.4-0-gb92ffef9/bin/app.hex
 ```
-### 7) Launch the installation script
+### 7) Запустите установочный скрипт
 
-Note: You can uninstall via `uninstall.sh` if you've installed a prior version.
+Примечание: Вы можете воспользоваться `uninstall.sh`, для удаления предыдущей версии.
 
 ```
 $ cd ledger-app-mina-1.0.0-beta.4-0-gb92ffef9
@@ -202,55 +202,54 @@ Generated random root public key : b'04e95715d4813ab98c92833da9b169d3ff6ee11a4f9
 Using test master key b'04e95715d4813ab98c92833da9b169d3ff6ee11a4f94a465503cc91e77aaea688d45a0449f41bfaa2a1a789730e72d0ace759ca7c2b8a12e82c94cda61530cc363'
 ```
 
-This will begin the installation of the app (continued in the next steps)
+Это запустит процесс установки приложения (продолжающийся на следующих шагах).
 
-Important: If you have verified the checksum in step (5), you can ignore messages about the public keys above and the "Application identifier" and "Application full hash" in subsequent steps.  These warnings are because ledger-app-mina is not yet an approved Ledger app.
+Важно: Если вы проверили контрольную сумму на шаге (5), вы можете игнорировать открытые ключи, указанные выше, а также «Идентификатор приложения» и «Полный хэш приложения» на следующих шагах. Эти предупреждения вызваны тем, что ledger-app-mina еще не является утвержденным Ledger приложением.
 
-### 8) Allow the "unsafe manager"
+### 8) Разрешите «Небезопасное Управление»
 
-Your Ledger device will warn you that the install script is an unsafe manager.
+Устройство Ledger предупредит вас, что установочный скрипт является небезопасным менеджером.
 
 ```
 < X Deny unsafe manager >
 ```
 
-Click left until you see
-
+Кликайте влево, пока не увидите
 ```
 < ✓ Allow unsafe manager >
 ```
 
-Select this option.
+Выберите этот вариант.
 
-### 9) Install app Mina
+### 9) Установите приложение Mina
 
-Your Ledger device will ask if you want to install the Mina app.
+Ваше устройство Ledger спросит, хотите ли вы установить приложение Mina.
 
 ```
 < M Install app Mina >
 ```
 
-Click left until you see
+Кликайте влево, пока не увидите
 
 ```
 < ✓ Perform installation >
 ```
 
-Select this option and enter your Ledger PIN code.
+Выберите этот вариант и введите свой PIN-код от Ledger.
 
-If the installation was successful the install script will terminate successfully and you will see the Mina logo among your list of installed apps.
+Если установка прошла успешно, скрипт завершится, и вы увидите логотип Mina в списке установленных приложений.
 
-### 10) Install the command-line wallet
+### 10) Установите command-line кошелек
 
 ```
 $ sudo cp ./mina_ledger_wallet /usr/local/bin/
 ```
 
-## Installing on Windows
+## Установка на Windows
 
-Before installing please make sure your Ledger device is updated to the latest firmware and fully configured.
+Перед установкой убедитесь, что ваше устройство Ledger обновлено до последней версии и полностью настроено.
 
-### 1) Install Python 3.9.1
+### 1) Установите Python 3.9.1
 
 Download and run the python installer: (https://www.python.org/ftp/python/3.9.1/python-3.9.1-amd64.exe)
 
