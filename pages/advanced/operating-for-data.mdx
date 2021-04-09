@@ -1,23 +1,23 @@
 import Page from '@reason/pages/Docs';
 export default Page({title: "Data Querying for Node Operators"});
 
-# Data Querying for Node Operators
+# Запросы Данных для Операторов Нод
 
-Some node operators don't wish to participate in block production or snark work creation, but just want to sit on the network and passively aggregate information for querying or submit signed transactions. These nodes don't require an account keypair themselves to run successfully.
+Некоторые операторы нод не желают участвовать в производстве блоков или быть снарк-воркерами, а хотят просто находиться в сети и пассивно собирать информацию для запросов или отправки подписанных транзакций. Для этих нод не требуется наличие пары ключей аккаунта для успешной работы.
 
-## Preparation
+## Подготовка
 
-In addition to [installing the Mina daemon on your machine](/docs/getting-started), you may also want to have some system set up to archive historical information on your machine. To do so you can setup an [archive node](/docs/archive-node) and/or archive via [other redundant means](/docs/archive-redundancy).
+В дополнение к [установке Mina daemon на ваш компьютер](/docs/getting-started), вам также может понадобиться настроить систему для архивирования данных на вашем компьютере. Для этого вы можете настроить [архивную ноду](/docs/archive-node) и/или архивировать данные, используя [другие способы](/docs/archive-redundancy).
 
-## Running a node
+## Запуск ноды
 
-The best way to learn how to run a node is to follow the instructions on the [Connecting page](/docs/connecting) of the docs.
+Лучший способ научиться разворачивать ноду - следовать инструкциям в документации на [Странице подключения](/docs/connecting).
 
-However, you should remove `CODA_PRIVKEY_PASS` and `-block-producer-key ...` flag as we do not wish this node to start as a block producer.
+Тем не менее, вы должны удалить флаги `CODA_PRIVKEY_PASS` и `-block-producer-key ...`, поскольку мы не хотим, чтобы эта нода была блок-продюсером.
 
-In order to expose recent information of the blockchain, we'll need to expose the GraphQL REST server. You may want to provide `-rest-server-port XXXX` if the default of 0xc0d or 3085 does not work for you. You may also want to provide `-insecure-rest-server` to make the REST server accessable from outside of `localhost`. However, if you do, make sure you set your firewall up properly. See [GraphQL API page](/docs/developers/graphql-api) for more.
+Чтобы предоставить последнюю информацию о блокчейне, нам нужно использовать GraphQL REST сервер. Вы можете предоставить `-rest-server-port XXXX`, если используемые по умолчанию 0xc0d или 3085 вам не подходят. Вы также можете предоставить `-insecure-rest-server`, чтобы сделать REST сервер доступным вне` localhost`. Однако, если вы это сделаете, убедитесь в правильности настроек вашего брандмауэра. Смотрите [страницу GraphQL API](/docs/developers/graphql-api) для получения дополнительной информации.
 
-## Querying information
+## Запрос информации
 
 Presented here are examples about querying for _recent_ information on the chain -- in practice exposed is ~10 hours of recent activity in the remaining testnets and the first version of Mainnet. As Mina is a succinct blockchain, for historical information can be accessed using [some sort of archival process](/docs/archive-redundancy)
 
