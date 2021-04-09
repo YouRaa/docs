@@ -68,7 +68,7 @@ $ sudo pip3 install ledgerblue
 
 ### 5) Скачайте ledger-app-mina
 
-Загрузите [Последний Релиз Ledger App Mina](https://github.com/jspada/ledger-app-mina/releases/latest) на Github.  Мы тестируем версию 1.0.0-beta.4
+Загрузите [Последний Релиз Приложения Mina для Ledger](https://github.com/jspada/ledger-app-mina/releases/latest) на Github.  Мы тестируем версию 1.0.0-beta.4
 
 ### 6) Проверьте контрольную сумму
 
@@ -168,9 +168,9 @@ brew install python3
 $ pip3 install ledgerblue
 ```
 
-### 4) Установите ledger-app-mina
+### 4) Скачайте ledger-app-mina
 
-Загрузите [Последний Релиз Ledger App Mina](https://github.com/jspada/ledger-app-mina/releases/latest) на Github.
+Загрузите [Последний Релиз Приложения Mina для Ledger](https://github.com/jspada/ledger-app-mina/releases/latest) на Github.
 
 ### 5) Проверьте контрольную сумму
 
@@ -251,51 +251,51 @@ $ sudo cp ./mina_ledger_wallet /usr/local/bin/
 
 ### 1) Установите Python 3.9.1
 
-Download and run the python installer: (https://www.python.org/ftp/python/3.9.1/python-3.9.1-amd64.exe)
+Скачайте и запустите установщик python: (https://www.python.org/ftp/python/3.9.1/python-3.9.1-amd64.exe)
 
-### 2) Open Windows Powershell
+### 2) Откройте Windows Powershell
 
-Press Windows + R to open the run menu, type 'powershell.exe', and press Enter to launch Powershell
+Нажмите Windows + R, чтобы открыть меню запуска, введите 'powershell.exe' и нажмите Enter, чтобы запустить Powershell.
 
-### 3) Install Python tools for Ledger Blue, Nano S and Nano X
+### 3) Установите унструменты Python для Ledger Blue, Nano S and Nano X
 
-In the powershell terminal, run the following command:
+Запустите следующую команду в терминале powershell:
 ```
 $ pip3 install ledgerblue
 ```
 
-### 4) Download ledger-app-mina
+### 4) Скачайте ledger-app-mina
 
-Download the [Latest Ledger App Mina Release](https://github.com/jspada/ledger-app-mina/releases/download/v1.0.0-beta.4/ledger-app-mina-1.0.0-beta.4-0-gb92ffef9.zip) from Github.
+Загрузите [Последний Релиз Приложения Mina для Ledger](https://github.com/jspada/ledger-app-mina/releases/download/v1.0.0-beta.4/ledger-app-mina-1.0.0-beta.4-0-gb92ffef9.zip) на Github.
 
-### 5) Verify the checksum
+### 5) Проверьте контрольную сумму
 
-In the powershell terminal, run the following command:
+Запустите следующую команду в терминале powershell:
 ```
 Get-FileHash -Path ledger-app-mina-1.0.0-beta.4-0-gb92ffef9.zip
 ```
 
-Compare the output of the above command to the SHA256 hash on the release download page.  If they match, then proceed to the next step.
+Сравните вывод указанной команды с SHA256-хешем на странице загрузки данного релиза. Если они совпадают, переходите к следующему шагу.
 
-### 6) Extract the archive
+### 6) Извлеките архив
 
 Right-click the .zip file in your Downloads folder and select `Extract All...`. In the resulting window just press "Extract" to unpack the archive.
 
-### 7) Change directory to the newly extracted archive
+### 7) Перейдите в каталог извлеченного архива
 
 ```
 PS > cd ledger-app-mina-1.0.0-beta.4-0-gb92ffef9
 ```
 
-### 8) (Optional) Uninstall a previous version of the mina app
+### 8) (Необязательно) Удалите предыдущую версию приложения mina 
 
-If you have installed the mina app before, begin by uninstalling the old version with the following command:
+Если вы уже установили приложение mina ранее, начните с удаления старой версии с помощью следующей команды:
 ```
 PS ...\ledger-app-mina-1.0.0-beta.4-0-gb92ffef9> python3 -m ledgerblue.deleteApp "--targetId" "0x31100004" "--appName" "Mina"
 ```
-Make sure to approve any prompts on the ledger device itself.
+Убедитесь, что вы одобрили все запросы на самом устройстве Ledger.
 
-### 9) Start the Installation of the new release
+### 9) Начните установку нового релиза
 
 ```
 PS ...\ledger-app-mina-1.0.0-beta.4-0-gb92ffef9> python3 -m ledgerblue.loadApp "--path" "44'/12586'" "--appFlags" "0x240" "--tlv" "--targetId" "0x31100004" "--targetVersion=1.6.0" "--delete" "--fileName" "bin/app.hex" "--appName" "Mina" "--appVersion" "1.0.0" "--dataSize" "64" "--icon" "010000000000ffffffffffffffffffeff7c7e393c9b3cdb3cdb3cdb3cdb3cd33cc799effffffffffff"
@@ -305,129 +305,128 @@ Generated random root public key : b'04e95715d4813ab98c92833da9b169d3ff6ee11a4f9
 Using test master key b'04e95715d4813ab98c92833da9b169d3ff6ee11a4f94a465503cc91e77aaea688d45a0449f41bfaa2a1a789730e72d0ace759ca7c2b8a12e82c94cda61530cc363'
 ```
 
-This will begin the installation of the app (continued in the next steps)
+Это запустит процесс установки приложения (продолжающийся на следующих шагах).
 
-Important: If you have verified the checksum in step (5), you can ignore messages about the public keys above and the "Application identifier" and "Application full hash" in subsequent steps.  These warnings are because ledger-app-mina is not yet an approved Ledger app.
+Важно: Если вы проверили контрольную сумму на шаге (5), вы можете игнорировать открытые ключи, указанные выше, а также «Идентификатор приложения» и «Полный хэш приложения» на следующих шагах. Эти предупреждения вызваны тем, что ledger-app-mina еще не является утвержденным Ledger приложением.
 
-### 10) Allow the "unsafe manager"
+### 10) Разрешите «Небезопасное Управление»
 
-Your Ledger device will warn you that the install script is an unsafe manager.
+Устройство Ledger предупредит вас, что установочный скрипт является небезопасным менеджером.
 
 ```
 < X Deny unsafe manager >
 ```
 
-Click left until you see
+Кликайте влево, пока не увидите
 
 ```
 < ✓ Allow unsafe manager >
 ```
 
-Select this option.
+Выберите этот вариант.
 
-### 11) Install app Mina
+### 11) Установите приложение Mina
 
-Your Ledger device will ask if you want to install the Mina app.
+Ваше устройство Ledger спросит, хотите ли вы установить приложение Mina.
 
 ```
 < M Install app Mina >
 ```
 
-Click left until you see
+Кликайте влево, пока не увидите
 
 ```
 < ✓ Perform installation >
 ```
 
-Select this option and enter your Ledger PIN code.
+Выберите этот вариант и введите свой PIN-код от Ledger.
 
-If the installation was successful the install script will terminate successfully and you will see the Mina logo among your list of installed apps.
+Если установка прошла успешно, скрипт завершится, и вы увидите логотип Mina в списке установленных приложений.
 
-### 12) Using the command line wallet
+### 12) Использование command-line кошелька
 
-When a command references `mina_ledger_wallet` later on in these docs, run the commands as `./mina_ledger_wallet ...` from the same powershell prompt.
+Когда команда ссылается на `mina_ledger_wallet` далее в этих документах, запускайте команды как `./mina_ledger_wallet ...` из той же командной строки PowerShell.
 
+## Генерация пары ключей
 
-## Generating a keypair
+Обратите внимание, что при создании пары ключей устройство Ledger фактически ничего не сохраняет! Ledger повторно извлекает ключ при каждом запуске. Это означает, что вам не нужно беспокоиться о потере ключа при удалении/повторной установке этого приложения.
 
-Note that on a Ledger device, generating a keypair doesn't actually store anything! The Ledger rederives the key every time it runs. This means you don't need to worry about losing your key when you uninstall/reinstall this application.
+Чтобы извлечь пару ключей и получить связанный с ними адрес Mina, откройте приложение Mina на своем устройстве Ledger, а затем используйте команду `mina_ledger_wallet` на вашем терминале.
 
-To derive a keypair and obtain the associated Mina address, open the Mina app on your Ledger device and then on your terminal use `mina_ledger_wallet` command.
-
-For example, to get the Mina address corresponding to hardware wallet account 42 (BIP44 account `44'/12586'/42'/0/0`) you would issue the following command.
+Например, чтобы получить адрес Mina, соответствующий учетной записи аппаратного кошелька 42 (аккаунт BIP44 `44'/12586'/42'/0/0`), вы должны выполнить следующую команду.
 
 ```
 $ mina_ledger_wallet get-address 42
 ```
 
-You will be prompted to confirm
+Вам будет предложено подтвердить операцию
 
 ```
 Get address for account 42 (path 44'/12586'/42'/0/0)
 Continue? (y/N) y
 ```
 
-Once confirmed, you will see
-
+После подтверждения, вы увидите
 ```
 Generating address (please confirm on Ledger device)...
 ```
 
-on your terminal while the Ledger device will display
+на вашем терминале, в то время как устройство Ledger будет отображать
 
 ```
 👁  Get Address    >
 ```
 
-This tells you what type of operation is being requested.
+Это говорит вам о том, какой тип операции запрашивается.
 
-Follow the arrow indicator by pressing and releasing the right button on your Ledger.
+Следуйте стрелке индикатора, нажав и отпустив правую кнопку на вашем устройстве Ledger.
 
-The Ledger will now display the BIP44 path for the address you are requesting.
+Теперь в Ledger отобразится BIP44 путь для запрашиваемого адреса.
 
 ```
     Path (1/2)
   44'/12586'/42'/0 >
 ```
 
-Note that the 42' in the path above corresponds to the account number.  Check that your path's account number matches whatever account number argument you supplied to your `get-address` command.
+Обратите внимание, что 42 'в указанном выше пути соответствует номеру аккаунта. Убедитесь, что номер аккаунта в вашем пути совпадает с номером аккаунта, который вы указали в команде `get-address`.
 
-Press the right button again until the Ledger displays
+Снова нажмите правую кнопку, пока Ledger не отобразит
 
 ```
         ✓
 <    Generate     >
 ```
 
-Now press both left and right buttons simultaneously to select this option and generate the address.
+Теперь одновременно нажмите левую и правую кнопки, чтобы выбрать эту опцию и сгенерировать адрес.
 
-The Ledger will now display
+Теперь Ledger отобразит
 
 ```
 Processing...
 ```
 
-whilst it generates the keypair.
+пока он генерирует пару ключей.
 
-Since Mina uses new elliptic curves that are not yet supported in hardware, this process can take up to 47 seconds.
+Поскольку Mina использует новый вид эллиптических кривых, которые еще не поддерживаются аппаратно, процесс может занять до 47 секунд.
 
-Once completed the Ledger will display the address for you to carefully check and confirm.
+После завершения процесса Ledger отобразит адрес, который вам необходимо внимательно проверить и подтвердить.
 
 ```
   Address (1/4)
 B62qnh5DZeX6eYFv >
 ```
 
-Once approved the `mina_ledger_wallet` command will output the result, which you can use.
+После подтверждения команда `mina_ledger_wallet` отобразит результат, который можно использовать.
 
 ```
 Received address: B62qnh5DZeX6eYFvtBn4nBTniXbN7R6cgKo6gYqQ7E2bKwLD3PTYZ4b
 ```
 
-Your address 42 will be different than the one above.
+Ваш адрес 42 будет отличаться от указанного выше.
 
 <Alert kind="note">
-When generating addresses you should, if possible, start with account 0 and increase the account number sequentially each time you require a new address.
+  При создании адресов вы должны, если это возможно, начинать с номера аккаунта 0 
+  и последовательно увеличивать номер аккаунта каждый раз, когда вам требуется новый адрес.
 </Alert>
 
 ## Validating your private key
