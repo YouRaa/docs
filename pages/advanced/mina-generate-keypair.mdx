@@ -2,110 +2,109 @@ import Page from "@reason/pages/Docs";
 export default Page({ title: "Mina Generate Keypair" });
 
 
-# mina-generate-keypair
+# Создание пар ключей mina
 
-To simplify the process of creating a keypair, we've created a simple command-line utility called `mina-generate-keypair`. The `mina-generate-keypair` tool has easy to use functionality to create your own Keypair to start participating in the Mina network. Please see below to see how to install and use on your local system.
+Чтобы упростить процесс генерации ключей, мы создали простую утилиту с командной строкой под названием `mina-generate-keypair`. Инструмент `mina-generate-keypair` имеет простой функционал для создания вашей пары ключей, позволяющей участвовать в сети Mina. Ниже описано, как установить и использовать инструмент в вашей локальной системе.
 
 <br/>
 
 <Alert kind="warning">
-Never reuse the same keypair from a testnet on mainnet!
+Никогда не используйте одну и ту же пару ключей из тестовой сети в mainnet!
 </Alert>
 
-## Installation
+## Установка
 
-We support several different operating systems for the `mina-generate-keypair` tool. Follow the instructions below to install the tool onto your system.
-
+Мы предоставляем поддержку `mina-generate-keypair` для нескольких операционных систем. Следуйте инструкциям ниже, чтобы установить инструмент на вашу OC.
 
 ### macOS
 
-If you are using macOS please install Docker and follow the docker based instructions bellow.
+Если вы используете macOS, установите Docker и следуйте приведенным ниже инструкциям.
 
 ### Ubuntu 18.04 / Debian 9
 
-After [adding the Mina repo](/docs/getting-started#ubuntu-1804--debian-9) you can simply run the following command.
+После [добавления репозитория Mina](/docs/getting-started#ubuntu-1804--debian-9), вы можете просто выполнить следующую команду.
 
 ```
 sudo apt-get install mina-generate-keypair=1.0.2-06f3c5c
 ```
 
-Check that keygen tool installed correctly by running `mina-generate-keypair -version`. The output should read `Commit 06f3c5cdeb635b2564fcb2edac4f10db85b93c36 on branch master`.
+Убедитесь, что инструмент для генерации ключей установлен правильно, запустив `mina-generate-keypair -version`. Вы должны получить `Commit 06f3c5cdeb635b2564fcb2edac4f10db85b93c36 on branch master` на выходе.
 
-### Windows / Other Platforms
+### Windows / Другие Платформы
 
-Install Docker and follow the Docker-based instructions in step 3b. below.
+Установите Docker и следуйте инструкциям, указанным в пункте 3b ниже.
 
-## Usage
+## Использование
 
-Creating a keypair is simple and is accomplished in a few short steps.
+Создание пары ключей выполняется за несколько простых шагов.
 
-1. First make sure you have a folder on your system where you can store the key files. We recommend using the `~/keys` folder.
+1. Сначала убедитесь, что в вашей системе есть папка для хранения файлов с ключами. Мы рекомендуем использовать папку `~/keys`.
 
 ```
 mkdir ~/keys
 ```
 
-2. Next, ensure the permissions are set properly this folder, this prevents unwanted processes from accessing these files.
+2. Затем убедитесь, что разрешения для этой папки установлены правильно, это предотвратит доступ к файлам нежелательных процессов.
 
 ```
 chmod 700 ~/keys
 ```
 
-3. Generate a key using either the instructions in Step 3a on Debian/Ubuntu, or Step 3b in Docker
+3. Создайте ключ, используя инструкции в пункте 3a для Debian/Ubuntu или пункте 3b для Docker.
 
 <br />
 
 <Alert kind="warning">
 
-Make sure to set a new and secure password for the following commands. Mina will never ask you for this password, and you should not share it with anyone.
+Обязательно установите новый надежный пароль для следующих команд. Mina никогда не будет просить у вас этот пароль, и вы не должны никому его сообщать.
 
 </Alert>
 
 <br />
 
 
-3a. In Ubuntu/Debian: Generate your keys using the `mina-generate-keypair` command. When prompted, type in the password you intend to use to secure this key. If is set, the tool will use the password from the CODA_PRIVKEY_PASS environment variable instead of prompting you. <em>Do NOT forget this password.</em>
+3a. Для Ubuntu/Debian: Создайте ключи с помощью команды `mina-generate-keypair`. При появлении запроса введите пароль, который вы хотите использовать для защиты ключей. Если это возможно, вместо него инструмент будет использовать пароль из переменных среды CODA_PRIVKEY_PASS. <em>НЕ ЗАБУДЬТЕ этот пароль.</em>
 
 ```
 mina-generate-keypair -privkey-path ~/keys/my-wallet
 ```
 
-3b. In Docker on Windows/MacOS/Linux: Generate your keys using the `minaprotocol/generate-keypair` docker image. When prompted, type in the password you intend to use to secure this key. <em>Do NOT forget this password.</em>
+3b. В Docker на Windows/MacOS/Linux: сгенерируйте ключи, используя образ Docker `minaprotocol/generate-keypair`. При появлении запроса введите пароль, который вы хотите использовать для защиты ключей. <em>НЕ ЗАБУДЬТЕ этот пароль.</em>
 
 ```
 cd ~
 docker run  --interactive --tty --rm --volume $(pwd)/keys:/keys minaprotocol/generate-keypair:1.0.2-06f3c5c -privkey-path /keys/my-wallet
 ```
 
-This will create two files on your system, `~/keys/my-wallet` which contains the encrypted private key and `~/keys/my-wallet.pub` which contains the public key in plain text. Please store the private key file and password you used in a secure place, such as a password manager.
+В вашей системе будут созданы два файла: `~/keys/my-wallet`, содержащий зашифрованный закрытый ключ, и `~/keys/my-wallet.pub`, который содержит открытый ключ в виде обычного текста. Пожалуйста, сохраните файл с закрытым ключом и пароль, который вы использовали, в надежном месте, например в менеджере паролей.
 
 <br />
 
 <Alert kind="warning">
 
-Never give out your private key and make sure they are stored safely. If you lose your private key or if a malicious actor gains access to your private key, you will lose access to your account and will lose your account funds. Always give out your public keys instead. Mina will never ask you for your private keys.
+Никогда не раскрывайте свой закрытый ключ и убедитесь в надежности его хранения. Если вы потеряете свой закрытый ключ или его получат злоумышленники, вы потеряете доступ к своему аккаунту и средствам на нем. Вместо этого всегда делителсь тоолько своими открытыми ключами. Mina никогда не станет просить у вас ваши закрытые ключи.
 
 </Alert>
 
 <br />
 
-4. Finally, ensure the permissions are set properly for the private key file, this prevents unwanted processes from accessing it.
+4. Наконец, убедитесь в правильности установленных разрешений для файла закрытого ключа, это предотвратит доступ к нему нежелательных процессов.
 
 ```
 chmod 600 ~/keys/my-wallet
 ```
 
-## Validate your private key
+## Подтвердите ваш закрытый ключ
 
-Now that you've created your key -- you'll want to validate that it works. It's sufficient to verify that you can sign a transaction. You can verify this using the `mina-validate-keypair` tool.
+После того, как вы создали ключ, вам нужно убедиться, что он работает. Достаточно убедиться, что вы можете подписать транзакцию. Вы можете проверить это с помощью `mina-validate-keypair`.
 
-On Linux run the following command:
+На Linux выполните следующую команду:
 
 ```
 mina-validate-keypair -privkey-path <path-to-the-private-key-file>
 ```
 
-If you are using Docker run the following command:
+При использовании Docker выполните следующую команду:
 
 ```
 docker run --interactive --tty --rm --entrypoint=mina-validate-keypair --volume $(pwd)/keys:/keys minaprotocol/generate-keypair:1.0.2-06f3c5c -privkey-path /keys/my-wallet
