@@ -17,13 +17,13 @@ export default Page({title: "Data Querying for Node Operators"});
 
 Чтобы предоставить последнюю информацию о блокчейне, нам нужно использовать GraphQL REST сервер. Вы можете предоставить `-rest-server-port XXXX`, если используемые по умолчанию 0xc0d или 3085 вам не подходят. Вы также можете предоставить `-insecure-rest-server`, чтобы сделать REST сервер доступным вне` localhost`. Однако, если вы это сделаете, убедитесь в правильности настроек вашего брандмауэра. Смотрите [страницу GraphQL API](/docs/developers/graphql-api) для получения дополнительной информации.
 
-## Запрос информации
+## Запрос данных
 
-Presented here are examples about querying for _recent_ information on the chain -- in practice exposed is ~10 hours of recent activity in the remaining testnets and the first version of Mainnet. As Mina is a succinct blockchain, for historical information can be accessed using [some sort of archival process](/docs/archive-redundancy)
+Здесь представлены примеры запросов _свежей_ информации о цепи -- на практике показано ~10 часов недавней активности в остальных тестовых сетях и первой версии Mainnet. Поскольку Mina является сжатым блокчейном, доступ к исторической информации можно получить с помощью [некоторого архивного процесса](/docs/archive-redundancy)
 
-The best way to explore all the specific details available for each of the GraphQL objects is to visit your favorite web browser pointing to the REST server running from within a Mina daemon that hosts a GraphQL sandbox. Visit the [GraphQL API page](/docs/developers/graphql-api) to learn more. Documentation is also present on most of the individual fields, you can learn more about each field by hovering over the entries in the sandbox or by visiting the [hosted schema](/graphql-docs/).
+Лучший способ изучить все конкретные детали, доступные для каждого из объектов GraphQL, - через предпочитаемый вами веб-браузер посетить REST сервер, запущенный из Mina daemon, на котором размещается GraphQL sandbox. Посетите [страницу GraphQL API](/docs/developers/graphql-api), чтобы узнать больше. Информация также представлена для большинства отдельных полей, вы можете узнать больше о каждом поле, наведя курсор на записи в sandbox или посетив [размещенную схему](/graphql-docs/).
 
-### Block data
+### Информация о блоке
 
 ```javascript
 query BlockData {
@@ -38,11 +38,11 @@ query BlockData {
 }
 ```
 
-We will soon add support for a `block` query that can request specific blocks within either the bestChain or any of the forks we are still holding in our node. See [#7404](https://github.com/MinaProtocol/mina/issues/7404) for more.
+Вскоре мы добавим поддержку запроса `block`, который может запрашивать данные определенных блоков в рамках bestChain или любых форков, которые хранит наша нода. Смотрите [#7404](https://github.com/MinaProtocol/mina/issues/7404) чтобы узнать больше.
 
-### Current Balance
+### Текущий Баланс
 
-The following is a query for accessing the current balance of a public key. Note that you can also ask for the blockHeight and stateHash of the block that this balance is inspected within.
+Ниже показан запрос для доступа к текущему балансу открытого ключа. Обратите внимание, что вы также можете запросить blockHeight и stateHash блока, в котором происходит проверка этого баланса.
 
 ```javascript
 query CurrentBalance {
@@ -56,9 +56,9 @@ query CurrentBalance {
 }
 ```
 
-### Staking Information
+### Информация о Стейкинге
 
-In Mina, accounts are either staked or delegated completely. There is no alternative state. The following is a way to query this information that is present in the current ledger.
+Аккаунты в Mina либо находятся в стейкинге, либо полностью делегируются. Другого состояния не существует. Ниже приведен способ запроса этой информации.
 
 ```javascript
 query StakingInfo {
@@ -75,13 +75,13 @@ query StakingInfo {
 }
 ```
 
-If the delegateAccount.publicKey is null, then this account is "staking directly" and this private key should be used for block production directly.
+Если delegateAccount.publicKey имеет значение null, тогда этот аккаунт "стейкает напрямую", и этот закрытый ключ должен использоваться непосредственно для производства блоков.
 
-Note that the actual staking and delegating in the current "epoch" is drawn from the "staking ledger". We are currently implementing a mechanism for accessing this staking ledger directly, but for now you'll need to periodically query for this information and store it internally and then refer to it when it becomes active. On epoch transitions, a new staking ledger is selected by promoting the snarked ledger of the last block two epochs prior. In practice, this is between 2-4 weeks.
+Обратите внимание, что прямой стейкинг и делегирование в текущей "эпохе" берутся из "журнала стейкинга". В настоящее время мы реализуем механизм для прямого доступа к этому журналу стейкинга, но на данный момент вам нужно будет периодически запрашивать эту информацию и хранить ее локально, обращаясь к ней, когда это необходимо. При смене эпох выбирается новый журнал стейкинга путем продвижения подтвержденного журнала последнего блока двумя эпохами ранее. На практике это занимает от 2 до 4 недель.
 
-### Get Transaction Details
+### Получить Детали Транзакции
 
-Via GraphQL, you can lookup transactions within blocks on the bestChain as follows:
+С помощью GraphQL вы можете искать транзакции в блоках на bestChain следующим образом:
 
 ```javascript
 query TransactionDetails {
@@ -117,9 +117,9 @@ query TransactionDetails {
 }
 ```
 
-## Submit a Signed Transaction
+## Отправить Подписанную Транзакцию
 
-You can send a signed transaction using the following GraphQL mutation. You can get information about the payment returned back to you as a sanity check.
+Вы можете отправить подписанную транзакцию, используя следующую GraphQL-мутацию. Вы можете получить информацию о возвращенном вам платеже в качестве проверки работоспособности.
 
 ```javascript
 mutation SubmitSignedTransaction {
