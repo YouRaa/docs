@@ -1,57 +1,56 @@
 import Page from "@reason/pages/Docs";
 export default Page({ title: "Seed Peers" });
 
-# Seed Peers
+# Сид Пиры
 
-Seed peers are our helpful allies that make it easy for the rest of us to connect to the network.
+Сид-пиры - наши помощники, которые упрощают для всех подключение к сети.
 
-Most nodes connect to the Mina network using seed peers that are run explicitly at seed nodes.
+Большинство нод подключаются к сети Mina с помощью сид-пиров, работающих на сид-нодах.
 
-## Running a Seed Node
+## Запуск Сид-ноды
 
-The two important things about seed nodes:
+Два важных момента о сид-нодах:
 
-1. Their address should be static
-2. They need high uptime and be able to support many connections -- thus they should avoid doing as much as possible other than "seeding"
+1. Их адрес должен быть статическим
+2. Они нуждаются в высоком уровне времени бесперебойной работы и могут поддерживать множество соединений -- поэтому им следует избегать других активностей в сети, кроме "раздачи".
 
-### Enforcing and publishing a static address
+### Обеспечение и публикация статического адреса 
 
-First of all, you need a static host where you'll be running your node. Preferably, you can use DNS and host your seed node at, for example: `seed.o1test.net`. Alternatively, you can also set up a static ipv4 address such as `82.230.217.200`.
+Прежде всего, вам требуется статический хост, на котором будет развернута ваша нода. Предпочтительно использовать DNS и разместить свою сид-ноду, например, на: `seed.o1test.net`. В качестве альтернативы вы можете настроить статический ipv4-адрес, например `82.230.217.200`.
 
-Secondly, you'll need to select the port that your node is running on. By default, it's on `8302`.
+Во-вторых, вам нужно выбрать порт, на котором будет работать нода. По умолчанию это `8302`.
 
-Thirdly, you'll want to pregenerate your libp2p keypair -- this is used to identify you on the gossip network. To do so:
+В-третьих, вам надо предварительно сгенерировать вашу libp2p пару ключей -- это необходимо для вашей идентификации в gossip-сети. Для этого:
 
 ```
 mina advanced generate-libp2p-keypair
 ```
 
-This will generate a libp2p keypair on your machine.
-And run your daemon with the `--discovery-keypair` flag:
+Это сгенерирует на вашем компьютере libp2p пару ключей. Также запустите ваш daemon с флагом `--discovery-keypair`:
 
-Finally you'd publish your DNS address like so:
+Наконец, вы опубликуете свой DNS-адрес следующим образом:
 
 ```
 /dns4/seed.o1test.net/tcp/8302/p2p/12D3KooWGDHtsPUS8dZk3x3FUgsXCWwpnSJ6W7EwkWZKBZXczkwC
 ```
 
-Or a static IP one in this manner:
+Или статический IP-адрес таким образом:
 
 ```
 /ip4/82.230.217.200/tcp/8302/p2p/12D3KooWCE97fGwuDCicVNK3ZWF8fVzfNezp3uGjmSc8VrRFem6a
 ```
 
-This address string can be used for folks to connect to you.
+Эта адресная строка может быть использована для подключения к вам других участников.
 
-### Tuning your node for uptime and high connections
+### Настройка ноды для обеспечения бесперебойной работы и высокоскоростного подключения
 
-Firstly, don't run block production or snark working on this node. Full stop. By doing neither of these things, the surface area for logic executing on this node reduces drastically.
+Во-первых, не запускайте производство блоков или снарк-воркинг на этой ноде. Прекратите эти процессы полностью. Если вы этого не сделаете, пространство для исполнения логики ноды резко сокращается.
 
-It would be preferable to run with a larger `--max-connection` flag. At least 100. You'll still be able to seed with more than 100 nodes in total, it's just that you'll only be able to maintain connections with 100 at once.
+Предпочтительнее запускать ноды с большим флагом `--max-connection`. По крайней мере, 100. Вы по-прежнему сможете быть сидом для более чем 100 нод, просто вы сможете поддерживать единовременное соединение только со 100 нодами.
 
-## Example daemon command
+## Пример команды daemon
 
-When we put together all the needed configuration, a basic seed node configuration could look like the following example.
+Когда мы произведем все необходимую сборку, базовая конфигурация сид-ноды может выглядеть как в примере ниже.
 
 ```
 mina daemon \
@@ -67,9 +66,9 @@ mina daemon \
 --max-connection 100
 ```
 
-Please note that `--discovery-keypair` could change in value depending on where you stored your libp2p keypair from the previous steps. Ensure also that you're running on a version later than `1.1.2` to handle `Mainnet` traffic.
+Обратите внимание, что значение `--discovery-keypair` может измениться в зависимости от того, где вы сохранили свою libp2p пару ключей в предыдущих шагах. Также убедитесь, что вы используете более позднюю версию, чем `1.1.2` для обработки `Mainnet` трафика.
 
-If you're using Docker, then here is a similar example.
+Если вы используете Docker, то ниже приведен аналогичный пример.
 
 ```
 docker run --name mina-seed-node -d \
@@ -89,14 +88,14 @@ minaprotocol/mina-daemon-baked:1.1.2-0975867 daemon \
 --log-level Info
 ```
 
-Make sure to replace the `--env CODA_LIBP2P_PASS=''` with your correct password for the libp2p keypair. Also as with the previous example, ensure you set the correct value with `--discovery-keypair`.
+Обязательно замените `--env CODA_LIBP2P_PASS=''` своим правильным паролем для пары ключей libp2p. Как и в предыдущем примере убедитесь, что вы установили правильное значение с помощью `--discovery-keypair`.
 
-## Peers List
+## Список Пиров
 
-There will be a peers list hosted with a handful of O(1) Labs nodes and another much larger handful of addresses from folks unaffiliated with O(1). This list is curated for nodes that should be great seed peers and will try their best to keep the list up-to-date as well.
+Один список пиров будет содержать несколько нод O(1) Labs, и еще один - гораздо большую группу адресов от лиц, не связанных с O(1). Этот список предназначен для нод, которые подходят для роли сид-пиров и должны будут делать все возможное, чтобы поддерживать список в актуальном состоянии.
 
-## Alternate Peer Lists
+## Альтернативные Списки Пиров
 
-We have a decentralized network after all -- we encourage other members in the community to host seed lists. To create a list, please talk to those you trust and use their addresses as seed peers.
+Наша сеть децентрализованная -- мы поощряем других членов сообщества размещать сид-списки. Чтобы создать список, поговорите с теми, кому вы доверяете, и используйте их адреса в качестве сид-пиров.
 
-To consume such alternate lists, you can swap the parameter `-peer-list-file` or `-peer-list-url` to point to another one.
+Чтобы использовать такие альтернативные списки, вы можете поменять параметр `-peer-list-file` или `-peer-list-url`, чтобы указать на другой список.
